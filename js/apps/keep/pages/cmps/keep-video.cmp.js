@@ -5,9 +5,8 @@ export default {
     <h4>{{info.title}}</h4>
     <iframe :src="info.content" frameborder="0"></iframe>
     <p>{{info.content}}</p>
-    <div>
-
-    </div>
+    
+               
     
   </section>
         `,

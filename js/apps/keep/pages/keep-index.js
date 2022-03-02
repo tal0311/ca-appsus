@@ -11,27 +11,28 @@ export default {
     <section class="keep-index app-main">
     <h1>keep app</h1>
     
-    <section>
+    <section class="add-note ">
       <!-- add new note -->
       <keep-add-note-cmp @new-note="addNote"/>
     </section>
 
-    <section class="pinned-notes-container" v-for="cmp in pinned">
+    <section class="pinned-notes-container flex" >
       <!-- pinned notes -->
       
-       <component class="note" :is="cmp.type" :info="cmp.info" @selVal="setAns" :key="cmp.id"></component>
+       <component class="note" :is="cmp.type" :info="cmp.info" @selVal="setAns" :key="cmp.id" v-for="cmp in pinned"></component>
+       
       
     </section>
    
    
-    <section class="notes-container" v-for="cmp in notes">
+    <section class="notes-container flex" >
 
-        <component class="note" :is="cmp.type" :info="cmp.info" @selVal="setAns" :key="cmp.id"></component>
+        <component class="note" :is="cmp.type" :info="cmp.info" @selVal="setAns" :key="cmp.id" v-for="cmp in notes"></component>
 
     </section>
    
 
-
+    
     </section>
     `,
   components: {

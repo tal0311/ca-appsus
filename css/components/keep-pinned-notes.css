@@ -1,0 +1,15 @@
+.pinned-notes-container.flex {
+  padding-top: 3rem;
+  background-color: var(--secondClr);
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  max-width: var(--deskTopWith);
+  margin: auto;
+}
+
+.pinned-notes-container.flex .note,
+textarea {
+  cursor: pointer;
+}

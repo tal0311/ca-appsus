@@ -6,6 +6,7 @@ export default {
             <h4>{{info.title}}</h4>
               <textarea cols="30" rows="10"
               >{{info.content}}</textarea>
+           
           </section>
 
         `,

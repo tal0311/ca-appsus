@@ -1,8 +1,10 @@
+import keepActionCmp from './cmps/keep-action.cmp.js'
+
 export default {
   name: 'keep-add-note-comp',
   props: [],
   template: `
-         <section>
+         <section class="add-note-container flex">
 
           <input type="text" 
           name="title" 
@@ -14,11 +16,18 @@ export default {
  
           <input  title="Pin note" type="checkbox"
            name="isPinned" value="true" v-model="newNote.isPinned"/>
+             
+              
           <button @click="saveNote" >add note</button>
-         </section>
+         
+          <keep-action-cmp/>
+
+        </section>
 
         `,
-  components: {},
+  components: {
+    keepActionCmp,
+  },
   created() {},
   data() {
     return {

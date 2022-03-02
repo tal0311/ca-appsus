@@ -1,0 +1,24 @@
+.notes-container.flex {
+  padding-top: 3rem;
+  background-color: var(--secondClr);
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  max-width: var(--deskTopWith);
+  margin: auto;
+}
+
+.notes-container.flex .note iframe {
+  max-width: 100%;
+}
+.notes-container.flex .note img {
+  object-fit: contain;
+  object-fit: cover;
+  width: 100%;
+  height: 80%;
+}
+.notes-container.flex .note {
+  max-width: 20%;
+  max-height: 100%;
+}

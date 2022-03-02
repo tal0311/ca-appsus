@@ -1,4 +1,5 @@
-/* :root {
-    --bgc:  #ff0000;;
-
-} */
+:root {
+  --primaryClr: rgb(226, 226, 226);
+  --secondaryClr: rgb(255, 238, 3);
+  --deskTopWith: 80vw;
+}
