@@ -10,11 +10,11 @@ export default {
     <h1>keep app</h1>
     
     <!-- list -->
-    <div v-for="cmp in notes">
+    <section class="notes-container" v-for="cmp in notes">
 
-        <component  :is="cmp.type" :info="cmp.info" @selVal="setAns" :key="cmp.id"></component>
+        <component class="note" :is="cmp.type" :info="cmp.info" @selVal="setAns" :key="cmp.id"></component>
 
-    </div>
+    </section>
    
 
 
@@ -67,17 +67,6 @@ export default {
             ],
           },
         },
-        {
-          id: 'n103',
-          type: 'keepImgCmp',
-          info: {
-            label: 'Get my stuff together',
-            todos: [
-              { txt: 'Driving liscence', doneAt: null },
-              { txt: 'Coding power', doneAt: 187111111 },
-            ],
-          },
-        },
       ],
     }
   },
@@ -87,8 +76,5 @@ export default {
     },
   },
   computed: {},
-  created() {
-    console.log(this.notes[0].type)
-    console.log('created')
-  },
+  created() {},
 }
