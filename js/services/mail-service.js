@@ -64,7 +64,7 @@ function _creatmails() {
             body: 'would love to catch up sometime',
             isRead: false,
             sentAt: 1551133930594,
-            from: 'avi@baba.com',
+            peer: 'avi@baba.com',
             label: 'inbox',
         });
         mails.push({
@@ -73,7 +73,7 @@ function _creatmails() {
             body: 'Hello love to catch up sometime',
             isRead: false,
             sentAt: 1551133930594,
-            from: 'meir@baba.com',
+            peer: 'meir@baba.com',
             label: 'inbox',
         });
         mails.push({
@@ -82,7 +82,7 @@ function _creatmails() {
             body: 'yoyo love to catch up sometime',
             isRead: false,
             sentAt: 1551133930594,
-            from: 'david@baba.com',
+            peer: 'david@baba.com',
             label: 'inbox',
         });
         mails.push({
@@ -91,7 +91,7 @@ function _creatmails() {
             body: 'yoyo love to catch up sometime',
             isRead: false,
             sentAt: 1551133930594,
-            from: 'david@baba.com',
+            peer: 'david@baba.com',
             label: 'sent',
         });
         mails.push({
@@ -100,7 +100,7 @@ function _creatmails() {
             body: 'yoyo love to catch up sometime',
             isRead: false,
             sentAt: 1551133930594,
-            from: 'david@baba.com',
+            peer: 'david@baba.com',
             label: 'starred',
         });
         utilService.saveToStorage(STORAGE_KEY, mails);

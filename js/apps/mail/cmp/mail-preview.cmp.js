@@ -6,7 +6,9 @@ export default {
         <div>subject: {{mail.subject}}</div>        
         <div>{{mail.body}}</div>        
         <div>{{mail.id}}</div>        
-        <div>{{mail.label}}</div>        
+        <div>{{mail.peer}}</div>
+        <div>{{mail.label}}</div>   
+        <div>{{}}</div>     
         <hr>
     </section>
     `,
