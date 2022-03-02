@@ -4,6 +4,7 @@ import mailIndex from './apps/mail/pages/mail-index.js';
 import mailInbox from './apps/mail/cmp/mail-inbox.cmp.js';
 import mailSent from './apps/mail/cmp/mail-sent.cmp.js';
 import mailStarred from './apps/mail/cmp/mail-starred.cmp.js';
+import mailAll from './apps/mail/cmp/mail-all.cmp.js';
 
 const routes = [
     {
@@ -30,6 +31,11 @@ const routes = [
                 path: 'starred',
                 component: mailStarred
             },
+            {
+                path: 'allMail',
+                component: mailAll
+            },
+
         ]
     },
 

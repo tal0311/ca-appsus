@@ -63,7 +63,7 @@ function _creatmails() {
             subject: 'miss you',
             body: 'would love to catch up sometime',
             isRead: false,
-            sentAt: 1551133930594,
+            time: 1551133930594,
             peer: 'avi@baba.com',
             label: 'inbox',
         });
@@ -71,8 +71,8 @@ function _creatmails() {
             id: '102',
             subject: 'Hello you',
             body: 'Hello love to catch up sometime',
-            isRead: false,
-            sentAt: 1551133930594,
+            isRead: true,
+            time: 1551133930594,
             peer: 'meir@baba.com',
             label: 'inbox',
         });
@@ -81,7 +81,7 @@ function _creatmails() {
             subject: 'yoyo you',
             body: 'yoyo love to catch up sometime',
             isRead: false,
-            sentAt: 1551133930594,
+            time: 1551133930594,
             peer: 'david@baba.com',
             label: 'inbox',
         });
@@ -90,7 +90,7 @@ function _creatmails() {
             subject: 'yoyo you',
             body: 'yoyo love to catch up sometime',
             isRead: false,
-            sentAt: 1551133930594,
+            time: 1551133930594,
             peer: 'david@baba.com',
             label: 'sent',
         });
@@ -98,8 +98,8 @@ function _creatmails() {
             id: '105',
             subject: 'yoyo you',
             body: 'yoyo love to catch up sometime',
-            isRead: false,
-            sentAt: 1551133930594,
+            isRead: true,
+            time: 1551133930594,
             peer: 'david@baba.com',
             label: 'starred',
         });
