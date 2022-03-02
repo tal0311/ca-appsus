@@ -1,13 +1,17 @@
-import appMainCmp from './pages/app-main.cmp.js'
+
+import susApp from './pages/sus-app.cmp.js'
+
 
 const routes = [
-  {
-    path: '/',
-    component: appMainCmp,
-  },
+    {
+        path: '/',
+        component: susApp
+    },
+
 ]
 
 export const router = VueRouter.createRouter({
-  routes,
-  history: VueRouter.createWebHashHistory(),
-})
+    routes,
+    history: VueRouter.createWebHashHistory()
+});
+
