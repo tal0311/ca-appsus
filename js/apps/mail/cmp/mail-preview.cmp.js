@@ -1,11 +1,8 @@
-import mailList from '../cmp/mail-list.cmp.js'
-
 export default {
-    name:'mail-index',
+    name:'mail-preview',
     template: `
-    <section class="mail-index app-main">
-    <h1>mail-index</h1>
-        <mail-list />
+    <section class="mail-preview">
+        mail-preview        
     </section>
     `,
     data() {
@@ -21,10 +18,10 @@ export default {
 
     },
     created() {
-        
+
     },
     components: {
-        mailList,
+
     }
 
 };
