@@ -1,7 +1,7 @@
 import mailPreview from "./mail-preview.cmp.js";
 
 export default {
-    name:'mail-inbox',
+    name:'mail-starred',
     props:['mails'],
     template: `
     <section class="mail-list">
