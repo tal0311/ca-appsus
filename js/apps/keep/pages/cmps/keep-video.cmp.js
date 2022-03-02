@@ -3,8 +3,8 @@ export default {
   template: `
   <section>
     <h4>{{info.title}}</h4>
-    <iframe src="info.url" frameborder="0"></iframe>
-    <p>{{info.url}}</p>
+    <iframe :src="info.content" frameborder="0"></iframe>
+    <p>{{info.content}}</p>
     <div>
 
     </div>

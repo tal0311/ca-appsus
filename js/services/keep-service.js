@@ -63,7 +63,7 @@ function _creatNots() {
       isPinned: true,
       info: {
         title: 'my txt title',
-        txt: 'Fullstack Me Baby!',
+        content: 'Fullstack Me Baby!',
       },
     })
     notes.push({
@@ -71,7 +71,7 @@ function _creatNots() {
       type: 'keepVideoCmp',
       info: {
         title: 'my video title',
-        url: 'https://www.youtube.com/watch?v=gThS-KfIxOs&t=2599s',
+        content: 'https://www.youtube.com/watch?v=gThS-KfIxOs&t=2599s',
       },
       style: {
         backgroundColor: '#00d',
@@ -82,7 +82,7 @@ function _creatNots() {
       type: 'keepImgCmp',
       info: {
         title: 'img title',
-        url: 'https://source.unsplash.com/random/200x200',
+        content: 'https://source.unsplash.com/random/200x200',
       },
       style: {
         backgroundColor: '#00d',

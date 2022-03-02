@@ -13,11 +13,8 @@ export default {
     
     <section>
       <!-- add new note -->
-      <button value="img">image</button>
-      <button>text</button>
-      <button>video</button>
-      <button>todo</button>
-       <component class="note" :is="cmp.type" :info="cmp.info" @selVal="setAns" :key="cmp.id"></component>
+     
+     <keep-add-note-cmp/>
       
     </section>
 
@@ -49,11 +46,16 @@ export default {
     return {
       notes: null,
       noteType: '',
+      current: 'txt',
     }
   },
   methods: {
     setAns() {
       console.log('set val')
+    },
+
+    setNoteVal() {
+      console.log(this.noteType)
     },
   },
   computed: {},

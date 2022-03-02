@@ -1,11 +1,12 @@
 export default {
+  name: 'keep-img-cmp',
   props: ['info'],
   template: `
 
   <section>
     <h4>{{info.title}}</h4>
-    <img src=" https://source.unsplash.com/random/200x200"  />
-
+    <img :src="imgUrl"  />
+      <p>{{info.content}}</p>
   </section>
         `,
   components: {},
@@ -14,5 +15,9 @@ export default {
     return {}
   },
   methods: {},
-  computed: {},
+  computed: {
+    imgUrl() {
+      return this.info.content
+    },
+  },
 }
