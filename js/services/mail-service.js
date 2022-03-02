@@ -63,17 +63,17 @@ function _creatmails() {
             subject: 'miss you',
             body: 'would love to catch up sometime',
             isRead: false,
-            sentAt: 1551133930594,
-            from: 'avi@baba.com',
+            time: 1551133930594,
+            peer: 'avi@baba.com',
             label: 'inbox',
         });
         mails.push({
             id: '102',
             subject: 'Hello you',
             body: 'Hello love to catch up sometime',
-            isRead: false,
-            sentAt: 1551133930594,
-            from: 'meir@baba.com',
+            isRead: true,
+            time: 1551133930594,
+            peer: 'meir@baba.com',
             label: 'inbox',
         });
         mails.push({
@@ -81,8 +81,8 @@ function _creatmails() {
             subject: 'yoyo you',
             body: 'yoyo love to catch up sometime',
             isRead: false,
-            sentAt: 1551133930594,
-            from: 'david@baba.com',
+            time: 1551133930594,
+            peer: 'david@baba.com',
             label: 'inbox',
         });
         mails.push({
@@ -90,17 +90,17 @@ function _creatmails() {
             subject: 'yoyo you',
             body: 'yoyo love to catch up sometime',
             isRead: false,
-            sentAt: 1551133930594,
-            from: 'david@baba.com',
+            time: 1551133930594,
+            peer: 'david@baba.com',
             label: 'sent',
         });
         mails.push({
             id: '105',
             subject: 'yoyo you',
             body: 'yoyo love to catch up sometime',
-            isRead: false,
-            sentAt: 1551133930594,
-            from: 'david@baba.com',
+            isRead: true,
+            time: 1551133930594,
+            peer: 'david@baba.com',
             label: 'starred',
         });
         utilService.saveToStorage(STORAGE_KEY, mails);

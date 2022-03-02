@@ -1,8 +1,8 @@
 import { mailService } from '../../../services/mail-service.js';
-import mailList from '../cmp/mail-list.cmp.js'
+import mailList from '../cmp/mail-list.cmp.js';
 
 export default {
-    name:'mail-index',
+    name: 'mail-index',
     template: `
     <section class="mail-index app-main">
         <h1>Mail</h1>
@@ -12,13 +12,16 @@ export default {
                     <router-link to="/mail/inbox" @click="mailType='inbox', showType()">inbox</router-link>
                 </div>
                 <div>
-                    <router-link to="/mail/sent" @click="mailType='sent', showType()">Sent</router-link>
+                    <router-link to="/mail/sent" @click="mailType='sent', showType() ">Sent</router-link>
+                </div>
+                <div>
+                    <router-link to="/mail/allMail" @click="mailType='allMail', showType()">All</router-link>
                 </div>
                 <div>
                     <router-link to="/mail/starred" @click="mailType='starred', showType()">Starred</router-link>
                 </div>
             </div>
-            <div class="mail-dislay">
+            <div class="mail-display">
                 <router-view :mails="displayMails"></router-view>
             </div>
         </div>
@@ -30,14 +33,14 @@ export default {
             filterBy: null,
             mailType: 'inbox',
             displayMails: this.mails,
+            currMail: null,
         };
     },
     methods: {
         showType() {
-            // console.log(this.mailType);
-            const result = this.mails.filter(mail => mail.label === this.mailType)
-            this.displayMails = result
-            // console.log(this.displayMails);
+            if (this.mailType === 'allMail') return this.displayMails = this.mails;
+            const result = this.mails.filter(mail => mail.label === this.mailType);
+            this.displayMails = result;
         },
     },
     computed: {
@@ -50,7 +53,8 @@ export default {
     },
     created() {
         mailService.query()
-            .then(mails => this.mails = mails);
+            .then(mails => this.mails = mails)
+            .then(mails => this.displayMails = mails);
     },
     components: {
         mailList,
