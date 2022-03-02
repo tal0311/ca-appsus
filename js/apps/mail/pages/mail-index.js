@@ -1,14 +1,18 @@
+import { mailService } from '../../../services/mail-service.js';
+import mailList from '../cmp/mail-list.cmp.js'
+
 export default {
     name:'mail-index',
     template: `
     <section class="mail-index app-main">
     <h1>mail-index</h1>
-    <h2>Open a git repo</h2>
+        <mail-list :mails="mailsForDisplay" />
     </section>
     `,
     data() {
         return {
-
+            mails: null,
+            filterBy: null
         };
     },
     methods: {
@@ -16,13 +20,18 @@ export default {
 
     },
     computed: {
-
+        mailsForDisplay() {
+            if (!this.filterBy) return this.mails;
+            const regex = new RegExp(this.filterBy.vendor, 'i');
+            return this.mails.filter(mail => regex.test(mail.vendor));
+        }
     },
     created() {
-        console.log('yay');
+        mailService.query()
+            .then(mails => this.mails = mails);
     },
     components: {
-
+        mailList,
     }
 
 };

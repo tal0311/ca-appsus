@@ -1,8 +1,11 @@
 export default {
+    name:'mail-preview',
+    props:['mail'],
     template: `
-    <section class="sus-app app-main">
-    <router-link to="/keep">Keep</router-link> |
-    <router-link to="/mail">Mail</router-link>
+    <section class="mail-preview">
+        <div>subject: {{mail.subject}}</div>        
+        <div>{{mail.body}}</div>        
+        <hr>
     </section>
     `,
     data() {
