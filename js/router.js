@@ -2,6 +2,8 @@ import susApp from './pages/sus-app.cmp.js'
 import keepIndex from './apps/keep/pages/keep-index.js';
 import mailIndex from './apps/mail/pages/mail-index.js';
 import mailInbox from './apps/mail/cmp/mail-inbox.cmp.js';
+import mailSent from './apps/mail/cmp/mail-sent.cmp.js';
+import mailStarred from './apps/mail/cmp/mail-starred.cmp.js';
 
 const routes = [
     {
@@ -19,6 +21,14 @@ const routes = [
             {
                 path: 'inbox',
                 component: mailInbox
+            },
+            {
+                path: 'sent',
+                component: mailSent
+            },
+            {
+                path: 'starred',
+                component: mailStarred
             },
         ]
     },
