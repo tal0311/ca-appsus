@@ -4,19 +4,24 @@ import mailList from '../cmp/mail-list.cmp.js'
 export default {
     name:'mail-index',
     template: `
-        <section class="mail-index app-main">
+    <section class="mail-index app-main">
         <h1>Mail</h1>
-        <div>
-            <router-link to="/mail/inbox" @click="mailType='inbox', showType()">inbox</router-link>
+        <div class="main-area">
+            <div class="side-menu">
+                <div>
+                    <router-link to="/mail/inbox" @click="mailType='inbox', showType()">inbox</router-link>
+                </div>
+                <div>
+                    <router-link to="/mail/sent" @click="mailType='sent', showType()">Sent</router-link>
+                </div>
+                <div>
+                    <router-link to="/mail/starred" @click="mailType='starred', showType()">Starred</router-link>
+                </div>
+            </div>
+            <div class="mail-dislay">
+                <router-view :mails="displayMails"></router-view>
+            </div>
         </div>
-        <div>
-            <router-link to="/mail/sent" @click="mailType='sent', showType()">Sent</router-link>
-        </div>
-        <div>
-            <router-link to="/mail/starred" @click="mailType='starred', showType()">Starred</router-link>
-        </div>
-        <hr>
-        <router-view :mails="displayMails"></router-view>
     </section>
     `,
     data() {
