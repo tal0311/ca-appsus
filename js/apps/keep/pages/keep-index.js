@@ -1,8 +1,9 @@
 export default {
+    name:'keep-index',
     template: `
-    <section class="sus-app app-main">
-    <router-link to="/keep">Keep</router-link>
-    <router-link to="/mail">Mail</router-link>
+    <section class="keep-index app-main">
+    <h1>Vue</h1>
+    <h2>Open a git repo</h2>
     </section>
     `,
     data() {
@@ -18,7 +19,7 @@ export default {
 
     },
     created() {
-
+        console.log('yay');
     },
     components: {
 
