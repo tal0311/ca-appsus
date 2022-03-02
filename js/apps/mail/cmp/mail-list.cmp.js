@@ -2,11 +2,12 @@ import mailPreview from "./mail-preview.cmp.js";
 
 export default {
     name:'mail-list',
+    props:['mails'],
     template: `
     <section class="mail-list">
         <ul>
-            <li>
-                <mail-preview />
+            <li v-for="mail in mails" :key="mail.id" class="mail-preview-container">
+                <mail-preview :mail='mail'/>
             </li>
         </ul>
         

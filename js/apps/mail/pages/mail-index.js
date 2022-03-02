@@ -6,12 +6,13 @@ export default {
     template: `
     <section class="mail-index app-main">
     <h1>mail-index</h1>
-        <mail-list></mail-list>
+        <mail-list :mails="mailsForDisplay" />
     </section>
     `,
     data() {
         return {
-
+            mails: null,
+            filterBy: null
         };
     },
     methods: {
@@ -19,10 +20,15 @@ export default {
 
     },
     computed: {
-
+        mailsForDisplay() {
+            if (!this.filterBy) return this.mails;
+            const regex = new RegExp(this.filterBy.vendor, 'i');
+            return this.mails.filter(mail => regex.test(mail.vendor));
+        }
     },
     created() {
-        
+        mailService.query()
+            .then(mails => this.mails = mails);
     },
     components: {
         mailList,
