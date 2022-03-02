@@ -1,10 +1,10 @@
 import mailPreview from "./mail-preview.cmp.js";
 
 export default {
-    name:'mail-inbox',
+    name:'mail-sent',
     props:['mails'],
     template: `
-    <section class="mail-inbox">
+    <section class="mail-sent">
 yay
         
     </section>
