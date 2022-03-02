@@ -64,7 +64,7 @@ function _creatmails() {
             body: 'would love to catch up sometime',
             isRead: false,
             sentAt: 1551133930594,
-            to: 'avi@baba.com'
+            from: 'avi@baba.com'
         });
         mails.push({
             id: '102',
@@ -72,7 +72,7 @@ function _creatmails() {
             body: 'Hello love to catch up sometime',
             isRead: false,
             sentAt: 1551133930594,
-            to: 'meir@baba.com'
+            from: 'meir@baba.com'
         });
         mails.push({
             id: '103',
@@ -80,7 +80,7 @@ function _creatmails() {
             body: 'yoyo love to catch up sometime',
             isRead: false,
             sentAt: 1551133930594,
-            to: 'david@baba.com'
+            from: 'david@baba.com'
         });
         utilService.saveToStorage(STORAGE_KEY, mails);
     }

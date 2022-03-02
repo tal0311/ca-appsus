@@ -7,6 +7,8 @@ export default {
     <section class="mail-index app-main">
     <h1>mail-index</h1>
         <mail-list :mails="mailsForDisplay" />
+        <router-link to="/mail/inbox">inbox</router-link>
+        <router-view></router-view>
     </section>
     `,
     data() {
