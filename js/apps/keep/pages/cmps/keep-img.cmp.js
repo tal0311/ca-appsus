@@ -1,9 +1,9 @@
 export default {
-  props: [],
+  props: ['info'],
   template: `
 
   <section>
-    <h4>note title</h4>
+    <h4>{{info.title}}</h4>
     <img src=" https://source.unsplash.com/random/200x200"  />
 
   </section>

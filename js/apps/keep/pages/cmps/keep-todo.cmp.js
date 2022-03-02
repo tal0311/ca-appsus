@@ -2,20 +2,16 @@ export default {
   props: ['info'],
   template: `
        <section>
-         <h4>note title</h4>
+         <h4>{{info.label}}</h4>
             <div>
-            <label htmlFor="1">
-              <p>task 1</p>
-              <input type="checkbox" name="" id="1" />
-            </label>
-            <label htmlFor="2">
-              <p>task 2</p>
-              <input type="checkbox" name="" id="2" />
-            </label>
-            <label htmlFor="3">
-              <p>task 3</p>
-              <input type="checkbox" name="" id="3" />
-            </label>
+           
+            <ul>
+              <li v-for="todo in info.todos" >
+                <p>{{todo.txt}}</p>
+                <p>done at: {{todo.doneAt}}</p>
+              </li>
+            </ul>
+            
              
              </div>
        </section>

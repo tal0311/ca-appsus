@@ -3,7 +3,7 @@ export default {
   template: `
        
           <section>
-            <h4>note title</h4>
+            <h4>{{info.title}}</h4>
               <textarea cols="30" rows="10"
               >{{info.txt}}</textarea>
           </section>
