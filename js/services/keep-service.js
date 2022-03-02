@@ -9,6 +9,7 @@ export const keepService = {
   remove,
   save,
   get,
+  getEmptyNote,
 }
 
 function query() {
@@ -30,26 +31,19 @@ function save(note) {
   else return storageService.post(STORAGE_KEY, note)
 }
 
-// function _setNextPrevmailId(note) {
-//   return storageService.query(STORAGE_KEY).then((mails) => {
-//     const mailIdx = mails.findIndex((currmail) => currmail.id === mail.id)
-//     mail.nextmailId = mails[mailIdx + 1] ? mails[mailIdx + 1].id : mails[0].id
-//     mail.prevmailId = mails[mailIdx - 1]
-//       ? mails[mailIdx - 1].id
-//       : mails[mails.length - 1].id
-//     return mail
-//   })
-// }
-
 // Factory Method:
+
 function getEmptyNote() {
   return {
-    id,
-    subject,
-    body,
-    isRead,
-    sentAt,
-    to,
+    type: '',
+    isPinned: false,
+    info: {
+      title: '',
+      content: '',
+    },
+    style: {
+      backgroundColor: '',
+    },
   }
 }
 
@@ -71,7 +65,7 @@ function _creatNots() {
       type: 'keepVideoCmp',
       info: {
         title: 'my video title',
-        content: 'https://www.youtube.com/watch?v=gThS-KfIxOs&t=2599s',
+        content: 'https://www.youtube.com/embed?v=gThS-KfIxOs&t=2599s',
       },
       style: {
         backgroundColor: '#00d',

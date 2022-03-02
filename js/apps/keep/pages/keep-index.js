@@ -13,12 +13,17 @@ export default {
     
     <section>
       <!-- add new note -->
-     
-     <keep-add-note-cmp/>
-      
+      <keep-add-note-cmp @new-note="addNote"/>
     </section>
 
-    <!-- list -->
+    <section class="pinned-notes-container" v-for="cmp in pinned">
+      <!-- pinned notes -->
+      
+       <component class="note" :is="cmp.type" :info="cmp.info" @selVal="setAns" :key="cmp.id"></component>
+      
+    </section>
+   
+   
     <section class="notes-container" v-for="cmp in notes">
 
         <component class="note" :is="cmp.type" :info="cmp.info" @selVal="setAns" :key="cmp.id"></component>
@@ -38,18 +43,38 @@ export default {
   },
   created() {
     keepService.query().then((notes) => {
+      this.pinned = notes.filter((note) => note.isPinned)
       this.notes = notes
-      console.log(this.notes)
+      console.log('notes:', this.notes)
+      console.log('pinned:', this.pinned)
     })
   },
   data() {
     return {
+      pinned: null,
       notes: null,
-      noteType: '',
-      current: 'txt',
     }
   },
+
   methods: {
+    addNote(note) {
+      console.log(note)
+      // todo: pass to service
+      let newNote = keepService.getEmptyNote()
+      newNote.type = 'keepTxtCmp'
+      newNote.info.title = note.TitleInput
+      newNote.info.content = note.contentInput
+      newNote.isPinned = note.isPinned
+
+      console.log('newNote:', newNote)
+      keepService.save(newNote).then((note) => {
+        note.isPinned
+          ? (this.pinned = [...this.pinned, note])
+          : (this.notes = [...this.notes, note])
+        console.log('notes:', this.notes)
+        console.log('pinned:', this.pinned)
+      })
+    },
     setAns() {
       console.log('set val')
     },
