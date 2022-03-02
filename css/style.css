@@ -7,9 +7,14 @@
 @import 'basic/layout.css';
 @import 'basic/helper.css';
 
-/* components */
+/* app components */
 @import 'components/header.css';
+
+/* mail componenets */
+@import 'components/mail-index.css';
 @import 'components/mail-list.css';
+
+/* keep components */
 
 /* media query */
 @import 'basic/mq.css';
