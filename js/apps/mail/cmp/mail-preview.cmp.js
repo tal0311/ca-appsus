@@ -1,3 +1,4 @@
+import { mailService } from "../../../services/mail-service.js";
 import mailFull from "./mail-full.cmp.js";
 
 export default {
@@ -25,6 +26,8 @@ export default {
         },
         markRead() {
             this.mail.isRead = true
+            mailService.save(this.mail)
+                .then(mail => console.log(mail))
         },
 
     },
