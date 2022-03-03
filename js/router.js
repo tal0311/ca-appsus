@@ -5,6 +5,7 @@ import mailInbox from './apps/mail/cmp/mail-inbox.cmp.js';
 import mailSent from './apps/mail/cmp/mail-sent.cmp.js';
 import mailStarred from './apps/mail/cmp/mail-starred.cmp.js';
 import mailAll from './apps/mail/cmp/mail-all.cmp.js';
+import mailCompose from './apps/mail/cmp/mail-compose.cmp.js';
 
 const routes = [
     {
@@ -34,6 +35,10 @@ const routes = [
             {
                 path: 'allMail',
                 component: mailAll
+            },
+            {
+                path: 'compose',
+                component: mailCompose
             },
 
         ]

@@ -6,23 +6,26 @@ export default {
     template: `
     <section class="mail-index app-main">
         <h1>Mail</h1>
+        <div class="mail-utils">
+            <router-link to="/mail/compose" >Compose Mail</router-link>
+        </div>
         <div class="main-area">
             <div class="side-menu">
                 <div>
+                <div>
+                    <router-link to="/mail/allMail" @click="mailType='allMail', showType()">All</router-link>
+                </div>
                     <router-link to="/mail/inbox" @click="mailType='inbox', showType()">inbox {{unreadCount}}</router-link>
                 </div>
                 <div>
                     <router-link to="/mail/sent" @click="mailType='sent', showType() ">Sent</router-link>
                 </div>
                 <div>
-                    <router-link to="/mail/allMail" @click="mailType='allMail', showType()">All</router-link>
-                </div>
-                <div>
                     <router-link to="/mail/starred" @click="mailType='starred', showType()">Starred</router-link>
                 </div>
             </div>
-            <div class="mail-display">
-                <router-view :mails="displayMails" @markRead="markRead"></router-view>
+            <div class="main-display">
+                    <router-view :mails="displayMails" @markRead="markRead" @addNewMail='addSentMail'></router-view>
             </div>
         </div>
     </section>
@@ -35,6 +38,7 @@ export default {
             displayMails: this.mails,
             currMail: null,
             unreadCount: null,
+            // isComposing: false,
         };
     },
     methods: {
@@ -49,8 +53,13 @@ export default {
             mailService.save(mail)
                 .then(mail => console.log(mail))
                 .then(this.unreadCount--)
-
-        }
+        },
+        addSentMail(mailToAdd){
+            mailService.save(mailToAdd)
+                .then(mail => console.log(mail))
+                // .then(eventbus)
+            this.$router.push('/mail/inbox');
+        },
 
     },
     computed: {

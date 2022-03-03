@@ -44,12 +44,13 @@ function _setNextPrevmailId(mail) {
 // Factory Method:
 function getEmptymail() {
     return {
-        id,
-        subject,
-        body,
-        isRead,
-        sentAt,
-        to,
+        id: '',
+        subject: '',
+        body: '',
+        isRead: true,
+        time: 0,
+        peer: '',
+        label: 'sent',
     };
 }
 

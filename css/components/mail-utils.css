@@ -1,0 +1,14 @@
+.mail-utils {
+    background-color: rgb(237, 255, 189);
+    margin: 0 .5em;
+    padding: 1em;
+}
+
+.btn-compose {
+    background-color: rgb(187, 255, 252);
+    display: inline-block;
+}
+
+.btn-compose:hover {
+    cursor: pointer;
+}
