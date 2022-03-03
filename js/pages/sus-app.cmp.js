@@ -9,9 +9,7 @@ export default {
             </div>
         </header>
         <router-view class="main-router-view"/>
-        <!-- <footer>
-            footer
-        </footer> -->
+        
     </section>
     `,
   data() {
