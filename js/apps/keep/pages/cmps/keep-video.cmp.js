@@ -9,7 +9,7 @@ export default {
      
     <h4>{{note.info.title}}</h4>
     <iframe :src="note.info.content" frameborder="0"></iframe>
-    <p>{{note.info.content}}</p>
+    
     
         <div class="action-container">
         <input @change="addColor" type="color" name="color"

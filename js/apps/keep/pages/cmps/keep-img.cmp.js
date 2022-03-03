@@ -8,7 +8,8 @@ export default {
           <input type="checkbox" @click="togglePin" v-model="pinned" :checked="note.isPinned" />
            <h4>{{note.info.title}}</h4>
           <img :src="imgUrl"  />
-            <p>{{note.info.content}}</p>
+         
+            
            <div class="action-container">
                 <input @change="addColor" type="color" name="color"
                  v-model="color"/>

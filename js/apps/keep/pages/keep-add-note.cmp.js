@@ -11,7 +11,7 @@ export default {
           placeholder="title"
            v-model="newNote.TitleInput"/>
           <input type="text" 
-          placeholder="add note here"
+          :placeholder="contentPlaceHolder"
            v-model="newNote.contentInput" />
  
           <input  title="Pin note" type="checkbox"
@@ -26,6 +26,14 @@ export default {
           <label htmlFor="img">
                video
             <input type="radio" name="type" value="keepVideoCmp" v-model="newNote.type" />
+          </label>
+          <label htmlFor="img">
+               todo
+            <input type="radio" name="type" value="keepTodoCmp" v-model="newNote.type" />
+          </label>
+          <label htmlFor="img">
+               text
+            <input type="radio" name="type" value="keepTxtCmp" v-model="newNote.type" />
           </label>
          
           
@@ -52,13 +60,23 @@ export default {
   },
   methods: {
     saveNote() {
-      console.log()
+      console.log(this.newNote.contentInput)
       this.$emit('new-note', this.newNote)
       this.newNote.TitleInput = ''
       this.newNote.contentInput = ''
-      this.newNote.isPined = '' //!add ref to value
+      this.newNote.isPined = ''
       this.newNote.type = ''
     },
   },
-  computed: {},
+  computed: {
+    contentPlaceHolder() {
+      if (this.newNote.type === 'keepTxtCmp') return 'add your text here'
+      if (
+        this.newNote.type === 'keepImgCmp' ||
+        this.newNote.type === 'keepVideoCmp'
+      )
+        return 'add your url here'
+      if (this.newNote.type === 'keepTodoCmp') return 'add csv'
+    },
+  },
 }

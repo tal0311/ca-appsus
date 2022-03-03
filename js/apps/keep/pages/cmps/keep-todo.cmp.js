@@ -5,7 +5,9 @@ export default {
 
   
        <section :style="{backgroundColor:color}" v-bind="$attrs">
+          <input type="checkbox" @click="unPin"  :checked="note.isPinned" />
          <h4>{{note.info.label}}</h4>
+
          <label htmlFor="done" v-for="todo in note.info.todos">
                  <p>{{todo.txt}}</p>
                 <input type="checkbox" name="done" id="" />

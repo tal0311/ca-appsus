@@ -10,6 +10,7 @@ export const keepService = {
   save,
   get,
   getEmptyNote,
+  getEmptyTodo,
 }
 
 function query() {
@@ -45,6 +46,19 @@ function getEmptyNote() {
   }
 }
 
+function getEmptyTodo() {
+  return {
+    type: '',
+    info: {
+      label: '',
+      todos: [{ txt: '' }],
+    },
+    style: {
+      backgroundColor: '#00d',
+    },
+  }
+}
+
 function _creatNots() {
   let notes = utilService.loadFromStorage(STORAGE_KEY)
   if (!notes || !notes.length) {
@@ -58,7 +72,7 @@ function _creatNots() {
         content: 'Fullstack Me Baby!',
       },
       style: {
-        backgroundColor: '#00d',
+        backgroundColor: '',
       },
     })
     notes.push({
@@ -70,7 +84,7 @@ function _creatNots() {
         content: 'Fullstack Me Baby!',
       },
       style: {
-        backgroundColor: '#ffff',
+        backgroundColor: '',
       },
     })
     notes.push({
@@ -81,7 +95,7 @@ function _creatNots() {
         content: 'https://www.youtube.com/embed?v=gThS-KfIxOs&t=2599s',
       },
       style: {
-        backgroundColor: '#00d',
+        backgroundColor: '',
       },
     })
     notes.push({
@@ -92,7 +106,7 @@ function _creatNots() {
         content: 'https://source.unsplash.com/random/200x200',
       },
       style: {
-        backgroundColor: '#00d',
+        backgroundColor: '',
       },
     })
     notes.push({
@@ -106,7 +120,7 @@ function _creatNots() {
         ],
       },
       style: {
-        backgroundColor: '#00d',
+        backgroundColor: '',
       },
     })
 

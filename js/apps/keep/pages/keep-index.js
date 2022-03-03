@@ -105,7 +105,27 @@ export default {
     },
     addNote(note) {
       console.log(note)
-      // todo: pass to service
+      if (note.type === 'keepTodoCmp') {
+        let newNote = keepService.getEmptyTodo()
+        console.log('newNote:', newNote)
+
+        newNote.type = note.type
+        newNote.info.label = note.TitleInput
+        newNote.info.todos = note.contentInput.split(',').map((task) => {
+          return { txt: task }
+        })
+
+        console.log(newNote)
+        newNote.isPinned = note.isPinned
+        keepService.save(newNote).then((note) => {
+          note.isPinned
+            ? (this.pinned = [...this.pinned, note])
+            : (this.notes = [...this.notes, note])
+          console.log('notes:', this.notes)
+          console.log('pinned:', this.pinned)
+        })
+        return
+      }
       let newNote = keepService.getEmptyNote()
       newNote.type = note.type
       newNote.info.title = note.TitleInput
