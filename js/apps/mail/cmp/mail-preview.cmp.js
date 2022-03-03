@@ -16,7 +16,7 @@ export default {
                 <button @click="deleteMail">Delete</button>
             </div>
         </div>
-        <hr v-show="!fullMail">
+        <hr v-show="!fullMail" class="preview-hr">
         <mail-full v-if="fullMail" :mail="mail"/>
     </section>
     `,
