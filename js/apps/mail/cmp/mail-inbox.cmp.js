@@ -7,10 +7,9 @@ export default {
     <section class="mail-list">
         <ul>
             <li v-for="mail in mails" :key="mail.id" class="mail-preview-container">
-                <mail-preview :mail='mail'/>
+                <mail-preview :mail='mail' @markRead="markRead"/>
             </li>
-        </ul>
-        
+        </ul>   
     </section>
     `,
     data() {
@@ -19,7 +18,10 @@ export default {
         };
     },
     methods: {
-
+        markRead(mail) {
+            console.log('accepted at list', mail.id);
+            this.$emit('markRead', mail)
+        }
 
     },
     computed: {
