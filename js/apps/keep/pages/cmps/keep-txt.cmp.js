@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       color: this.note.style.backgroundColor,
-      pinned: '',
+      pinned: this.note.isPinned,
     }
   },
   methods: {

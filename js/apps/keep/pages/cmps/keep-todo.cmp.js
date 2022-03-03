@@ -21,7 +21,7 @@ export default {
                 <input @change="addColor" type="color" name="color"
                  v-model="color"/>
                  <i class="fa-solid fa-circle-trash"></i>
-                 <font-awesome-icon icon="fa-solid fa-circle-trash" />
+                
                 <button @click="remove" >&#10754;</button>
                 <button @click="duplicate">&#x29C9;</button>
               </div>
@@ -34,10 +34,11 @@ export default {
   data() {
     return {
       color: this.note.style.backgroundColor,
+      pinned: this.note.isPinned,
     }
   },
   methods: {
-    unPin() {
+    togglePin() {
       console.log(this.note.id)
       this.$emit('pin', this.note.id)
     },

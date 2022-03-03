@@ -72,7 +72,7 @@ function _creatNots() {
         content: 'Fullstack Me Baby!',
       },
       style: {
-        backgroundColor: '',
+        backgroundColor: '#ffffff',
       },
     })
     notes.push({
@@ -84,7 +84,7 @@ function _creatNots() {
         content: 'Fullstack Me Baby!',
       },
       style: {
-        backgroundColor: '',
+        backgroundColor: '#ffffff',
       },
     })
     notes.push({
@@ -95,7 +95,7 @@ function _creatNots() {
         content: 'https://www.youtube.com/embed?v=gThS-KfIxOs&t=2599s',
       },
       style: {
-        backgroundColor: '',
+        backgroundColor: '#ffffff',
       },
     })
     notes.push({
@@ -106,7 +106,7 @@ function _creatNots() {
         content: 'https://source.unsplash.com/random/200x200',
       },
       style: {
-        backgroundColor: '',
+        backgroundColor: '#ffffff',
       },
     })
     notes.push({
@@ -120,7 +120,7 @@ function _creatNots() {
         ],
       },
       style: {
-        backgroundColor: '',
+        backgroundColor: '#ffffff',
       },
     })
 
