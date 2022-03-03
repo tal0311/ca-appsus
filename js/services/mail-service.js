@@ -122,5 +122,6 @@ function _creatmail(id, subject, body, isRead, sentAt,to) {
     return mail;
 }
 
-
-
+function getFakeMails() {
+    console.log('yay');
+}
