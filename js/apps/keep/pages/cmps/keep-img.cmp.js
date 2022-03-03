@@ -1,9 +1,9 @@
 export default {
   name: 'keep-img-cmp',
-  props: ['info', 'noteId'],
+  props: ['info', 'noteId', 'noteStyle'],
   template: `
 
-        <section v-bind="$attrs">
+        <section :style="{backgroundColor:color}" v-bind="$attrs">
           <h4>{{info.title}}</h4>
           <img :src="imgUrl"  />
             <p>{{info.content}}</p>
@@ -20,12 +20,13 @@ export default {
   created() {},
   data() {
     return {
-      color: '',
+      color: this.noteStyle.backgroundColor,
     }
   },
   methods: {
     addColor() {
-      this.color
+      this.$emit('change-color', this.color, this.noteId)
+      console.log(this.color)
     },
     remove() {
       console.log('remove', this.noteId)

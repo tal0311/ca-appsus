@@ -37,8 +37,9 @@ export default {
 
         <component class="note" :is="cmp.type" :info="cmp.info"
         :noteId="cmp.id"
-       
+        :noteStyle="cmp.style"
         @remove-note="removeNote" @duplicate-note="duplicateNote"
+        @change-color="addColorToNote"
         :key="cmp.id" v-for="cmp in notes"
         ></component>
 
@@ -57,8 +58,8 @@ export default {
   },
   created() {
     keepService.query().then((notes) => {
+      this.notes = notes.filter((note) => !note.isPinned)
       this.pinned = notes.filter((note) => note.isPinned)
-      this.notes = notes
       console.log('notes:', this.notes)
       console.log('pinned:', this.pinned)
     })
@@ -74,7 +75,9 @@ export default {
     addColorToNote(color, id) {
       console.log(color, id)
       keepService.get(id).then((note) => {
-        console.log(note.style.backgroundColor)
+        console.log(note)
+        note.style = { ...note.style, backgroundColor: color }
+        keepService.save(note)
       })
     },
     addNote(note) {

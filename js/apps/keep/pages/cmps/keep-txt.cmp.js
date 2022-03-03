@@ -5,9 +5,9 @@ export default {
 
   template: `
        
-          <section  v-bind="$attrs">
+          <section :style="{backgroundColor:color}" v-bind="$attrs">
             <h4 >{{info.title}}</h4>
-              <textarea  cols="30" rows="10"
+              <textarea :style="{backgroundColor:color}" cols="30" rows="10"
               >{{info.content}}</textarea>
             <div class="action-container">
                 <input @change="addColor" type="color" name="color"
@@ -22,7 +22,7 @@ export default {
   created() {},
   data() {
     return {
-      color: '',
+      color: this.noteStyle.backgroundColor,
     }
   },
   methods: {
