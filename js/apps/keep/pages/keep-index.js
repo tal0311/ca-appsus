@@ -7,6 +7,7 @@ import keepAddNoteCmp from './keep-add-note.cmp.js'
 
 export default {
   name: 'keep-index',
+  emits: ['remove', 'duplicate'],
   template: `
     <section class="keep-index app-main">
     <h1>keep app</h1>
@@ -19,7 +20,10 @@ export default {
     <section class="pinned-notes-container flex" >
       <!-- pinned notes -->
       
-       <component class="note" :is="cmp.type" :info="cmp.info" @selVal="setAns" :key="cmp.id" v-for="cmp in pinned"></component>
+       <component class="note" :is="cmp.type" :info="cmp.info"
+        :key="cmp.id" v-for="cmp in pinned"
+       :noteId="cmp.id"
+       @remove="removeNote" ></component>
        
       
     </section>
@@ -27,7 +31,8 @@ export default {
    
     <section class="notes-container flex" >
 
-        <component class="note" :is="cmp.type" :info="cmp.info" @selVal="setAns" :key="cmp.id" v-for="cmp in notes"></component>
+        <component class="note" :is="cmp.type" :info="cmp.info"   :key="cmp.id" v-for="cmp in notes"
+        ></component>
 
     </section>
    
@@ -62,7 +67,7 @@ export default {
       console.log(note)
       // todo: pass to service
       let newNote = keepService.getEmptyNote()
-      newNote.type = 'keepTxtCmp'
+      newNote.type = note.type
       newNote.info.title = note.TitleInput
       newNote.info.content = note.contentInput
       newNote.isPinned = note.isPinned
@@ -76,12 +81,11 @@ export default {
         console.log('pinned:', this.pinned)
       })
     },
-    setAns() {
-      console.log('set val')
+    removeNote(id) {
+      console.log('reomve:', id)
     },
-
-    setNoteVal() {
-      console.log(this.noteType)
+    duplicateNote(id) {
+      console.log('duplicate', id)
     },
   },
   computed: {},

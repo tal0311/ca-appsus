@@ -1,6 +1,6 @@
 export default {
   name: 'actions',
-  props: [],
+  props: ['id'],
   template: `
 
               <div class="action-container">
@@ -8,7 +8,7 @@ export default {
                  v-model="color"/>
                 <button @click="remove">remove</button>
                 <button @click="duplicate">duplicate</button>
-                <input type="text" />
+                
              </div>
 
 
@@ -22,14 +22,14 @@ export default {
   },
   methods: {
     duplicate() {
-      console.log('dup')
-      this.$emit('remove-note')
+      console.log('dup', this.id)
+      this.$emit('duplicate-note', this.id)
     },
     remove() {
       console.log('remove')
     },
-    addColor() {
-      console.log(this.color)
+    addColo() {
+      console.log('color')
     },
   },
   computed: {},

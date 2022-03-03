@@ -18,9 +18,20 @@ export default {
            name="isPinned" value="true" v-model="newNote.isPinned"/>
              
               
-          <button @click="saveNote" >add note</button>
+          <button @click="saveNote">add note</button>
+          <label htmlFor="img">
+            img
+            <input type="radio" name="type" value="keepImgCmp" v-model="newNote.type" />
+          </label>
+          <label htmlFor="img">
+               video
+            <input type="radio" name="type" value="keepVideoCmp" v-model="newNote.type" />
+          </label>
          
-          <keep-action-cmp/>
+          
+         
+          <!--change to color only -->
+         
 
         </section>
 
@@ -32,6 +43,7 @@ export default {
   data() {
     return {
       newNote: {
+        type: 'keepTxtCmp',
         TitleInput: '',
         contentInput: '',
         isPinned: '',
@@ -45,6 +57,7 @@ export default {
       this.newNote.TitleInput = ''
       this.newNote.contentInput = ''
       this.newNote.isPined = '' //!add ref to value
+      this.newNote.type = ''
     },
   },
   computed: {},
