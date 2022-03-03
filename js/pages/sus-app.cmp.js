@@ -1,5 +1,5 @@
 export default {
-    template: `
+  template: `
     <section class="sus-app app-main">
         <header>
             <span class="logo">AppSus</span>
@@ -9,28 +9,16 @@ export default {
             </div>
         </header>
         <router-view class="main-router-view"/>
-        <footer>
+        <!-- <footer>
             footer
-        </footer>
+        </footer> -->
     </section>
     `,
-    data() {
-        return {
-
-        };
-    },
-    methods: {
-
-
-    },
-    computed: {
-
-    },
-    created() {
-
-    },
-    components: {
-
-    }
-
-};
+  data() {
+    return {}
+  },
+  methods: {},
+  computed: {},
+  created() {},
+  components: {},
+}

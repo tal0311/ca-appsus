@@ -5,7 +5,11 @@ export default {
 
   
        <section :style="{backgroundColor:color}" v-bind="$attrs">
-          <input type="checkbox" @click="unPin"  :checked="note.isPinned" />
+         <label htmlFor="pin">
+                &#9733;
+                <input type="checkbox" @click="togglePin" v-model="pinned" :checked="note.isPinned" id="pin"/>
+              </label>
+          <!-- <input type="checkbox" @click="unPin"  :checked="note.isPinned" /> -->
          <h4>{{note.info.label}}</h4>
 
          <label htmlFor="done" v-for="todo in note.info.todos">
@@ -16,8 +20,10 @@ export default {
               <div class="action-container">
                 <input @change="addColor" type="color" name="color"
                  v-model="color"/>
-                <button @click="remove">remove</button>
-                <button @click="duplicate">duplicate</button>
+                 <i class="fa-solid fa-circle-trash"></i>
+                 <font-awesome-icon icon="fa-solid fa-circle-trash" />
+                <button @click="remove" >&#10754;</button>
+                <button @click="duplicate">&#x29C9;</button>
               </div>
                  
         </section>
