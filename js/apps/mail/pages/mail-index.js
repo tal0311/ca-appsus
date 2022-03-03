@@ -1,5 +1,5 @@
 import { mailService } from '../../../services/mail-service.js';
-import mailList from '../cmp/mail-list.cmp.js';
+// import mailList from '../cmp/mail-list.cmp.js';
 
 export default {
     name: 'mail-index',
@@ -9,7 +9,7 @@ export default {
         <div class="main-area">
             <div class="side-menu">
                 <div>
-                    <router-link to="/mail/inbox" @click="mailType='inbox', showType()">inbox ({{unreadCount}})</router-link>
+                    <router-link to="/mail/inbox" @click="mailType='inbox', showType()">inbox {{unreadCount}}</router-link>
                 </div>
                 <div>
                     <router-link to="/mail/sent" @click="mailType='sent', showType() ">Sent</router-link>
@@ -22,7 +22,7 @@ export default {
                 </div>
             </div>
             <div class="mail-display">
-                <router-view :mails="displayMails"></router-view>
+                <router-view :mails="displayMails" @markRead="markRead"></router-view>
             </div>
         </div>
     </section>
@@ -34,7 +34,7 @@ export default {
             mailType: 'inbox',
             displayMails: this.mails,
             currMail: null,
-            unreadCount: null
+            unreadCount: null,
         };
     },
     methods: {
@@ -43,17 +43,18 @@ export default {
             const result = this.mails.filter(mail => mail.label === this.mailType);
             this.displayMails = result;
         },
+        markRead(mail) {
+            // console.log('accepted at index',mail.id);
+            mail.isRead = true
+            mailService.save(mail)
+                .then(mail => console.log(mail))
+                .then(this.unreadCount--)
+
+        }
 
     },
     computed: {
-        mailsForDisplay() {
-            // if (!this.filterBy) return this.mails;
-            // const regex = new RegExp(this.filterBy.vendor, 'i');
-            // return this.mails.filter(mail => regex.test(mail.vendor));
-        },
-        countUnread() {
-            
-        },
+
     },
     created() {
         mailService.query()
@@ -63,7 +64,7 @@ export default {
             .then(mails => this.mails.map(mail=> {if (!mail.isRead) this.unreadCount++}))
     },
     components: {
-        mailList,
+        // mailList,
     }
 
 };

@@ -6,7 +6,7 @@ export default {
     props:['mail'],
     template: `
     <section class="mail-preview" >
-        <div class="preview-body" @click="fullMailDisp(), markRead()" :class="readClass">
+        <div class="preview-body" @click="fullMailDisp(), markRead(mail)" :class="readClass">
             <div>subject: {{mail.subject}}</div>    
             <div>{{mail.time}}</div>    
             <div>{{mail.peer}}</div>
@@ -17,6 +17,7 @@ export default {
     `,
     data() {
         return {
+            
             fullMail: false,
         };
     },
@@ -24,10 +25,10 @@ export default {
         fullMailDisp() {
             this.fullMail = !this.fullMail
         },
-        markRead() {
+        markRead(mail) {
             this.mail.isRead = true
-            mailService.save(this.mail)
-                .then(mail => console.log(mail))
+            // console.log('accepted at list', mail.id);
+            this.$emit('markRead', mail)
         },
 
     },
