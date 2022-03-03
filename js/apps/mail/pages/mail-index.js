@@ -8,8 +8,8 @@ export default {
     <section class="mail-index app-main">
         <div class="mail-utils">
             <router-link to="/mail/compose" class="compose">
-                <span >Compose + </span>  
-                <!-- <img src="../icons/plus.png" alt=""> -->
+                <span >COMPOSE </span>  
+                <span ><img src="js/apps/mail/icons/plus.png" alt=""></span>  
             </router-link>
         </div>
         <div class="main-area">
