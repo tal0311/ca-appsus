@@ -9,7 +9,7 @@ export default {
         <div class="main-area">
             <div class="side-menu">
                 <div>
-                    <router-link to="/mail/inbox" @click="mailType='inbox', showType()">inbox</router-link>
+                    <router-link to="/mail/inbox" @click="mailType='inbox', showType()">inbox ({{unreadCount}})</router-link>
                 </div>
                 <div>
                     <router-link to="/mail/sent" @click="mailType='sent', showType() ">Sent</router-link>
@@ -34,6 +34,7 @@ export default {
             mailType: 'inbox',
             displayMails: this.mails,
             currMail: null,
+            unreadCount: null
         };
     },
     methods: {
@@ -42,19 +43,24 @@ export default {
             const result = this.mails.filter(mail => mail.label === this.mailType);
             this.displayMails = result;
         },
+
     },
     computed: {
         mailsForDisplay() {
-            if (!this.filterBy) return this.mails;
-            const regex = new RegExp(this.filterBy.vendor, 'i');
-            return this.mails.filter(mail => regex.test(mail.vendor));
+            // if (!this.filterBy) return this.mails;
+            // const regex = new RegExp(this.filterBy.vendor, 'i');
+            // return this.mails.filter(mail => regex.test(mail.vendor));
         },
-
+        countUnread() {
+            
+        },
     },
     created() {
         mailService.query()
             .then(mails => this.mails = mails)
-            .then(mails => this.displayMails = mails);
+            .then(mails => this.displayMails = mails)
+            // TODO - move unreadCount to computed:
+            .then(mails => this.mails.map(mail=> {if (!mail.isRead) this.unreadCount++}))
     },
     components: {
         mailList,
