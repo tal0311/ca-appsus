@@ -5,7 +5,13 @@ export default {
   template: `
 
         <section :style="{backgroundColor:color}" v-bind="$attrs">
-          <input type="checkbox" @click="togglePin" v-model="pinned" :checked="note.isPinned" />
+
+        <label htmlFor="pin">
+                &#9733;
+                <input type="checkbox" @click="togglePin" v-model="pinned" :checked="note.isPinned" id="pin"/>
+        </label>
+
+         
            <h4>{{note.info.title}}</h4>
           <img :src="imgUrl"  />
          
@@ -13,8 +19,8 @@ export default {
            <div class="action-container">
                 <input @change="addColor" type="color" name="color"
                  v-model="color"/>
-                <button @click="remove">remove</button>
-                <button @click="duplicate">duplicate</button>
+                <button @click="remove">&#10754;</button>
+                <button @click="duplicate">&#x29C9;</button>
             </div>  
            
           </section>

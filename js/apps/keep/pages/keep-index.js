@@ -20,7 +20,7 @@ export default {
     <section class="pinned-notes-container flex" >
       <!-- pinned notes -->
       
-       <component class="note" :is="cmp.type"
+       <component v-if="pinned" class="note" :is="cmp.type"
        :key="cmp.id" v-for="cmp in pinned"
        :note="cmp"
         @remove-note="removeNote" @duplicate-note="duplicateNote"

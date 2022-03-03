@@ -5,19 +5,25 @@ export default {
 
   
        <section :style="{backgroundColor:color}" v-bind="$attrs">
-          <input type="checkbox" @click="unPin"  :checked="note.isPinned" />
+         <label htmlFor="pin">
+                &#9733;
+                <input type="checkbox" @click="togglePin" v-model="pinned" :checked="note.isPinned" id="pin"/>
+              </label>
+          <!-- <input type="checkbox" @click="unPin"  :checked="note.isPinned" /> -->
          <h4>{{note.info.label}}</h4>
 
          <label htmlFor="done" v-for="todo in note.info.todos">
                  <p>{{todo.txt}}</p>
-                <input type="checkbox" name="done" id="" />
+                <input type="checkbox" name="done" id=""  @click="atDone"/>
                 <p>done at: {{todo.doneAt}}</p>
               </label>
               <div class="action-container">
                 <input @change="addColor" type="color" name="color"
                  v-model="color"/>
-                <button @click="remove">remove</button>
-                <button @click="duplicate">duplicate</button>
+                 <i class="fa-solid fa-circle-trash"></i>
+                
+                <button @click="remove" >&#10754;</button>
+                <button @click="duplicate">&#x29C9;</button>
               </div>
                  
         </section>
@@ -28,10 +34,14 @@ export default {
   data() {
     return {
       color: this.note.style.backgroundColor,
+      pinned: this.note.isPinned,
     }
   },
   methods: {
-    unPin() {
+    atDone() {
+      console.log('done')
+    },
+    togglePin() {
       console.log(this.note.id)
       this.$emit('pin', this.note.id)
     },

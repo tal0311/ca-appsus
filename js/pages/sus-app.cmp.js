@@ -1,5 +1,5 @@
 export default {
-    template: `
+  template: `
     <section class="sus-app app-main">
         <header>
             <span class="logo">AppSus</span>
