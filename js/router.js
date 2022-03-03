@@ -11,38 +11,42 @@ const routes = [
     {
         path: '/',
         component: susApp,
-    },
-    {
-        path: '/keep',
-        component: keepIndex,
-    },
-    {
-        path: '/mail',
-        component: mailIndex,
         children: [
             {
-                path: 'allMail',
-                component: mailAll
+                path: 'keep',
+                component: keepIndex,
             },
             {
-                path: 'inbox',
-                component: mailInbox
-            },
-            {
-                path: 'sent',
-                component: mailSent
-            },
-            {
-                path: 'starred',
-                component: mailStarred
-            },
-            {
-                path: 'compose',
-                component: mailCompose
+                path: 'mail',
+                component: mailIndex,
+                children: [
+                    {
+                        path: 'allMail',
+                        component: mailAll
+                    },
+                    {
+                        path: 'inbox',
+                        component: mailInbox
+                    },
+                    {
+                        path: 'sent',
+                        component: mailSent
+                    },
+                    {
+                        path: 'starred',
+                        component: mailStarred
+                    },
+                    {
+                        path: 'compose',
+                        component: mailCompose
+                    },
+        
+                ]
             },
 
         ]
     },
+
 
 ]
 

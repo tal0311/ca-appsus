@@ -1,0 +1,15 @@
+header { 
+    background-color: rgb(255, 161, 161);
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 2em;
+}
+
+footer {
+    background-color: rgb(198, 255, 13);
+    padding: 1em;
+}
+
+.main-router-view {
+    height: 80vh;
+}
