@@ -1,10 +1,11 @@
-/* .mail-preview {
+.main-preview{
     display: flex;
+    justify-content: space-between;
 }
 
-.preview-body {
-    flex-grow: 1;
-} */
+.date-delete-btn {
+    text-align: right;
+}
 
 .notRead {
     font-weight: bold;

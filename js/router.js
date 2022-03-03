@@ -21,6 +21,10 @@ const routes = [
         component: mailIndex,
         children: [
             {
+                path: 'allMail',
+                component: mailAll
+            },
+            {
                 path: 'inbox',
                 component: mailInbox
             },
@@ -31,10 +35,6 @@ const routes = [
             {
                 path: 'starred',
                 component: mailStarred
-            },
-            {
-                path: 'allMail',
-                component: mailAll
             },
             {
                 path: 'compose',

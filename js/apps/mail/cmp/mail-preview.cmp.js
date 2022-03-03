@@ -5,18 +5,19 @@ export default {
     name:'mail-preview',
     props:['mail'],
     template: `
-    <section class="mail-preview" >
-        <div class="checkbox">
-            <!-- <input type="checkbox" v-model="toggle" true-value="yes" false-value="no"> -->
+    <section class="mail-preview" @click="mailClicked" :class="readClass">
+        <div class="main-preview">
+            <div class="peer-subject" >
+                <div>{{mail.peer}}</div>
+                <div>subject: {{mail.subject}}</div>    
+            </div>
+            <div class="date-delete-btn">
+                <div>{{mail.time}}</div>    
+                <button @click="deleteMail">Delete</button>
+            </div>
         </div>
-        <div class="preview-body" @click="mailClicked" :class="readClass">
-            <div>subject: {{mail.subject}}</div>    
-            <div>{{mail.time}}</div>    
-            <div>{{mail.peer}}</div>
-        </div>
-        <button @click="deleteMail">Delete</button>
-        <mail-full v-if="fullMail" :mail="mail"/>
         <hr v-show="!fullMail">
+        <mail-full v-if="fullMail" :mail="mail"/>
     </section>
     `,
     data() {

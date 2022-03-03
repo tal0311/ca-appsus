@@ -39,7 +39,7 @@ export default {
         return {
             mails: null,
             filterBy: null,
-            mailType: 'inbox',
+            mailType: 'allMail',
             displayMails: this.mails,
             currMail: null,
             unreadCount: null,
@@ -63,7 +63,7 @@ export default {
                 .then(mail => this.mails.push(mailToAdd))
                 .then(mail => this.formattedDate());
             // .then(eventbus)
-            this.$router.push('/mail/inbox');
+            this.$router.push('/mail/allMail');
         },
         deleteMail(mail) {
             console.log('male deleted from service');
