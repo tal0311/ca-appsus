@@ -1,7 +1,8 @@
 export default {
+  name: 'videoNote',
   props: ['info', 'noteId'],
   template: `
-  <section>
+  <section   v-bind="$attrs">
     <h4>{{info.title}}</h4>
     <iframe :src="info.content" frameborder="0"></iframe>
     <p>{{info.content}}</p>

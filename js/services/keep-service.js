@@ -62,6 +62,18 @@ function _creatNots() {
       },
     })
     notes.push({
+      id: 'n10000',
+      type: 'keepTxtCmp',
+      isPinned: false,
+      info: {
+        title: 'my txt title',
+        content: 'Fullstack Me Baby!',
+      },
+      style: {
+        backgroundColor: '#ffff',
+      },
+    })
+    notes.push({
       id: 'n102',
       type: 'keepVideoCmp',
       info: {
