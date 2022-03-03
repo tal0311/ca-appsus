@@ -23,7 +23,6 @@ export default {
   methods: {
     duplicate() {
       console.log('dup', this.id)
-      this.$emit('duplicate-note', this.id)
     },
     remove() {
       console.log('remove')

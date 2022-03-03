@@ -7,7 +7,7 @@ import keepAddNoteCmp from './keep-add-note.cmp.js'
 
 export default {
   name: 'keep-index',
-  emits: ['remove', 'duplicate'],
+  emits: ['remove', 'duplicate', 'change-color'],
   template: `
     <section class="keep-index app-main">
     <h1>keep app</h1>
@@ -20,10 +20,14 @@ export default {
     <section class="pinned-notes-container flex" >
       <!-- pinned notes -->
       
-       <component class="note" :is="cmp.type" :info="cmp.info"
+       <component class="note" :is="cmp.type"
+        :info="cmp.info"
+        :noteId="cmp.id"
+        :noteStyle="cmp.style"
+        @remove-note="removeNote" @duplicate-note="duplicateNote"
+        @change-color="addColorToNote"
         :key="cmp.id" v-for="cmp in pinned"
-       :noteId="cmp.id"
-       @remove="removeNote" ></component>
+        ></component>
        
       
     </section>
@@ -31,7 +35,11 @@ export default {
    
     <section class="notes-container flex" >
 
-        <component class="note" :is="cmp.type" :info="cmp.info"   :key="cmp.id" v-for="cmp in notes"
+        <component class="note" :is="cmp.type" :info="cmp.info"
+        :noteId="cmp.id"
+       
+        @remove-note="removeNote" @duplicate-note="duplicateNote"
+        :key="cmp.id" v-for="cmp in notes"
         ></component>
 
     </section>
@@ -63,6 +71,12 @@ export default {
   },
 
   methods: {
+    addColorToNote(color, id) {
+      console.log(color, id)
+      keepService.get(id).then((note) => {
+        console.log(note.style.backgroundColor)
+      })
+    },
     addNote(note) {
       console.log(note)
       // todo: pass to service
@@ -82,10 +96,31 @@ export default {
       })
     },
     removeNote(id) {
-      console.log('reomve:', id)
+      console.log('note:', id)
+      keepService.get(id).then((note) => {
+        console.log(note)
+        if (note.isPinned) {
+          let idx = this.pinned.findIndex((note) => note.id === id)
+          this.pinned.splice(idx, 1)
+        }
+        let idx = this.pinned.findIndex((note) => note.id)
+        this.notes.splice(idx, 1)
+      })
+      keepService.remove(id).then((res) => console.log(res))
     },
     duplicateNote(id) {
       console.log('duplicate', id)
+      keepService.get(id).then((note) => {
+        let duplicateNote = { ...note }
+        duplicateNote.is = note.id + 'dup'
+        keepService.save(duplicateNote).then((note) => {
+          if (note.isPinned) {
+            console.log('pinned')
+            this.pinned = [...this.pinned, note]
+          }
+          this.notes = [...this.notes, note]
+        })
+      })
     },
   },
   computed: {},
