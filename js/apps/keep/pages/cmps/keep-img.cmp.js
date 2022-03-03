@@ -1,12 +1,14 @@
 export default {
-  name: 'keep-img-cmp',
-  props: ['info', 'noteId', 'noteStyle'],
+  name: 'img-cmp',
+  props: ['note'],
+  emits: ['remove-note', 'duplicate-note', 'change-color', 'pin'],
   template: `
 
         <section :style="{backgroundColor:color}" v-bind="$attrs">
-          <h4>{{info.title}}</h4>
+          <input type="checkbox" @click="togglePin" v-model="pinned" :checked="note.isPinned" />
+           <h4>{{note.info.title}}</h4>
           <img :src="imgUrl"  />
-            <p>{{info.content}}</p>
+            <p>{{note.info.content}}</p>
            <div class="action-container">
                 <input @change="addColor" type="color" name="color"
                  v-model="color"/>
@@ -20,26 +22,28 @@ export default {
   created() {},
   data() {
     return {
-      color: this.noteStyle.backgroundColor,
+      color: '#ffffff',
+      pinned: this.note.isPinned,
     }
   },
   methods: {
+    togglePin() {
+      console.log(this.note.id, this.note.isPinned)
+      this.$emit('pin', this.note.id, this.pinned)
+    },
     addColor() {
-      this.$emit('change-color', this.color, this.noteId)
-      console.log(this.color)
+      this.$emit('change-color', this.color, this.note.id)
     },
     remove() {
-      console.log('remove', this.noteId)
-      this.$emit('remove-note', this.noteId)
+      this.$emit('remove-note', this.note.id)
     },
     duplicate() {
-      console.log('dup', this.noteId)
-      this.$emit('duplicate-note', this.noteId)
+      this.$emit('duplicate-note', this.note.id)
     },
   },
   computed: {
     imgUrl() {
-      return this.info.content
+      return this.note.info.content
     },
   },
 }
