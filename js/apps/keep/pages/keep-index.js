@@ -50,8 +50,8 @@ export default {
     </section>
     `,
   components: {
-    // keepTodoCmp,
-    // keepVideoCmp,
+    keepTodoCmp,
+    keepVideoCmp,
     keepTxtCmp,
     keepImgCmp,
     keepAddNoteCmp,

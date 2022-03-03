@@ -22,7 +22,7 @@ export default {
   created() {},
   data() {
     return {
-      color: '#ffffff',
+      color: this.note.style.backgroundColor,
       pinned: this.note.isPinned,
     }
   },
