@@ -30,7 +30,7 @@ export default {
             this.markRead()
         },
         markRead() {
-            this.mail.isRead = true
+            // this.mail.isRead = true
             this.$emit('markRead', this.mail)
         },
         deleteMail() {

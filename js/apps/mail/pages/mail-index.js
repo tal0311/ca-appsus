@@ -54,22 +54,26 @@ export default {
         },
         markRead(mail) {
             // console.log('accepted at index',mail.id);
+            if (mail.isRead) return
             mail.isRead = true
             mailService.save(mail)
                 .then(this.unreadCount--)
         },
         addSentMail(mailToAdd){
             mailService.save(mailToAdd)
-                .then(mail => console.log(mail))
+                .then(mail => this.mails.push(mailToAdd))
                 // .then(eventbus)
             this.$router.push('/mail/inbox');
         },
         deleteMail(mail) {
+            console.log('male deleted from service');
             const mailId = mail.id
             mailService.remove(mail.id)
-                .then(() => {
+            .then(() => {
                 const idx = this.mails.findIndex((mail) => mail.id === mailId);
                 this.mails.splice(idx, 1);
+                this.showType()
+                console.log('male deleted from controller');
                 // showSuccessMsg('Deleted succesfully');
             })
         }

@@ -7,7 +7,7 @@ export default {
     <section class="mail-list">
         <ul>
             <li v-for="mail in mails" :key="mail.id" class="mail-preview-container">
-                <mail-preview :mail='mail' @markRead="markRead"/>
+                <mail-preview :mail='mail' @markRead="markRead" @delete="deleteMail"/>
             </li>
         </ul>   
     </section>
@@ -19,8 +19,11 @@ export default {
     },
     methods: {
         markRead(mail) {
-            console.log('accepted at list', mail.id);
+            // console.log('accepted at list', mail.id);
             this.$emit('markRead', mail)
+        },
+        deleteMail(mail) {
+            this.$emit('delete', mail)
         }
 
     },
