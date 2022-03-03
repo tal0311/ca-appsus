@@ -1,3 +1,11 @@
+/* .mail-preview {
+    display: flex;
+}
+
+.preview-body {
+    flex-grow: 1;
+} */
+
 .notRead {
     font-weight: bold;
 }

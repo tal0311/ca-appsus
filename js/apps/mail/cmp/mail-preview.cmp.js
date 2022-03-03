@@ -6,30 +6,36 @@ export default {
     props:['mail'],
     template: `
     <section class="mail-preview" >
-        <div class="preview-body" @click="fullMailDisp(), markRead(mail)" :class="readClass">
+        <div class="checkbox">
+            <!-- <input type="checkbox" v-model="toggle" true-value="yes" false-value="no"> -->
+        </div>
+        <div class="preview-body" @click="mailClicked" :class="readClass">
             <div>subject: {{mail.subject}}</div>    
             <div>{{mail.time}}</div>    
             <div>{{mail.peer}}</div>
-        </div>    
-        <hr v-show="!fullMail">
+        </div>
+        <button @click="deleteMail">Delete</button>
         <mail-full v-if="fullMail" :mail="mail"/>
+        <hr v-show="!fullMail">
     </section>
     `,
     data() {
         return {
-            
             fullMail: false,
         };
     },
     methods: {
-        fullMailDisp() {
+        mailClicked() {
             this.fullMail = !this.fullMail
+            this.markRead()
         },
-        markRead(mail) {
+        markRead() {
             this.mail.isRead = true
-            // console.log('accepted at list', mail.id);
-            this.$emit('markRead', mail)
+            this.$emit('markRead', this.mail)
         },
+        deleteMail() {
+            this.$emit('delete', this.mail)
+        }
 
     },
     computed: {

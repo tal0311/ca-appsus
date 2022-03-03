@@ -13,9 +13,9 @@ export default {
             <div class="side-menu">
                 <div>
                 <div>
-                    <router-link to="/mail/allMail" @click="mailType='allMail', showType()">All</router-link>
+                    <router-link to="/mail/allMail" @click="mailType='allMail', showType()">All {{unreadCount}}</router-link>
                 </div>
-                    <router-link to="/mail/inbox" @click="mailType='inbox', showType()">inbox {{unreadCount}}</router-link>
+                    <router-link to="/mail/inbox" @click="mailType='inbox', showType()">inbox</router-link>
                 </div>
                 <div>
                     <router-link to="/mail/sent" @click="mailType='sent', showType() ">Sent</router-link>
@@ -25,7 +25,12 @@ export default {
                 </div>
             </div>
             <div class="main-display">
-                    <router-view :mails="displayMails" @markRead="markRead" @addNewMail='addSentMail'></router-view>
+                    <router-view 
+                    :mails="displayMails" 
+                    @markRead="markRead" 
+                    @addNewMail='addSentMail'
+                    @delete="deleteMail"
+                    ></router-view>
             </div>
         </div>
     </section>
@@ -51,7 +56,6 @@ export default {
             // console.log('accepted at index',mail.id);
             mail.isRead = true
             mailService.save(mail)
-                .then(mail => console.log(mail))
                 .then(this.unreadCount--)
         },
         addSentMail(mailToAdd){
@@ -60,7 +64,15 @@ export default {
                 // .then(eventbus)
             this.$router.push('/mail/inbox');
         },
-
+        deleteMail(mail) {
+            const mailId = mail.id
+            mailService.remove(mail.id)
+                .then(() => {
+                const idx = this.mails.findIndex((mail) => mail.id === mailId);
+                this.mails.splice(idx, 1);
+                // showSuccessMsg('Deleted succesfully');
+            })
+        }
     },
     computed: {
 
