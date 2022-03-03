@@ -41,7 +41,8 @@ export default {
     computed: {
         readClass() {
             return !this.mail.isRead ? 'notRead' : ""
-        }
+        },
+
     },
     created() {
 

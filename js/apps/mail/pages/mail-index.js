@@ -43,7 +43,6 @@ export default {
             displayMails: this.mails,
             currMail: null,
             unreadCount: null,
-            // isComposing: false,
         };
     },
     methods: {
@@ -54,39 +53,50 @@ export default {
         },
         markRead(mail) {
             // console.log('accepted at index',mail.id);
-            if (mail.isRead) return
-            mail.isRead = true
+            if (mail.isRead) return;
+            mail.isRead = true;
             mailService.save(mail)
-                .then(this.unreadCount--)
+                .then(this.unreadCount--);
         },
-        addSentMail(mailToAdd){
+        addSentMail(mailToAdd) {
             mailService.save(mailToAdd)
                 .then(mail => this.mails.push(mailToAdd))
-                // .then(eventbus)
+                .then(mail => this.formattedDate());
+            // .then(eventbus)
             this.$router.push('/mail/inbox');
         },
         deleteMail(mail) {
             console.log('male deleted from service');
-            const mailId = mail.id
+            const mailId = mail.id;
             mailService.remove(mail.id)
-            .then(() => {
-                const idx = this.mails.findIndex((mail) => mail.id === mailId);
-                this.mails.splice(idx, 1);
-                this.showType()
-                console.log('male deleted from controller');
-                // showSuccessMsg('Deleted succesfully');
-            })
+                .then(() => {
+                    const idx = this.mails.findIndex((mail) => mail.id === mailId);
+                    this.mails.splice(idx, 1);
+                    this.showType();
+                    console.log('male deleted from controller');
+                    // showSuccessMsg('Deleted succesfully');
+                });
+        },
+        countUnread() {
+            this.mails.map(mail => { if (!mail.isRead) this.unreadCount++; });
+        },
+        formattedDate() {
+            this.mails.map(mail => {
+                console.log('yay');
+                mail.time = new Date(mail.time).toLocaleTimeString();
+                console.log(mail.time);
+            });
         }
     },
     computed: {
-
     },
     created() {
         mailService.query()
             .then(mails => this.mails = mails)
             .then(mails => this.displayMails = mails)
             // TODO - move unreadCount to computed:
-            .then(mails => this.mails.map(mail=> {if (!mail.isRead) this.unreadCount++}))
+            .then(mails => this.countUnread())
+            .then(mails => this.formattedDate());
     },
     components: {
         // mailList,
