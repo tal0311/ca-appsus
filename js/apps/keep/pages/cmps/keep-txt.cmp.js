@@ -1,31 +1,45 @@
-import keepActionCmp from './keep-action.cmp.js'
-
 export default {
   name: 'txt-cmp',
-  props: ['info', 'noteId'],
+  props: ['info', 'noteId', 'noteStyle'],
+  emits: ['remove-note', 'duplicate-note', 'change-color'],
 
   template: `
-       <pre>{{noteId}}</pre>
-          <section>
-            <h4>{{info.title}}</h4>
-              <textarea cols="30" rows="10"
+       
+          <section :style="{backgroundColor:color}" v-bind="$attrs">
+            <h4 >{{info.title}}</h4>
+              <textarea :style="{backgroundColor:color}" cols="30" rows="10"
               >{{info.content}}</textarea>
-           <keep-action-cmp  
-          :id="noteId" @duplicate-note="log" />
+            <div class="action-container">
+                <input @change="addColor" type="color" name="color"
+                 v-model="color"/>
+                <button @click="remove">remove</button>
+                <button @click="duplicate">duplicate</button>
+              </div>
           </section>
 
         `,
-  components: {
-    keepActionCmp,
-  },
+  components: {},
   created() {},
   data() {
-    return {}
+    return {
+      color: this.noteStyle.backgroundColor,
+    }
   },
   methods: {
-    log(id) {
-      console.log(id)
-      this.$emit('remove', id)
+    addColor() {
+      this.$emit('change-color', this.color, this.noteId)
+      console.log(this.color)
+    },
+    remove() {
+      console.log('remove', this.noteId)
+      this.$emit('remove-note', this.noteId)
+    },
+    duplicate() {
+      console.log('dup', this.noteId)
+      this.$emit('duplicate-note', this.noteId)
+    },
+    setStyle(style) {
+      console.log(style)
     },
   },
   computed: {},

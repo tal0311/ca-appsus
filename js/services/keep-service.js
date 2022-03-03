@@ -21,9 +21,7 @@ function remove(noteId) {
 }
 
 function get(noteId) {
-  return storageService.get(STORAGE_KEY, noteId).then((note) => {
-    return _setNextPrevmailId(nots)
-  })
+  return storageService.get(STORAGE_KEY, noteId)
 }
 
 function save(note) {
@@ -59,6 +57,9 @@ function _creatNots() {
         title: 'my txt title',
         content: 'Fullstack Me Baby!',
       },
+      style: {
+        backgroundColor: '#00d',
+      },
     })
     notes.push({
       id: 'n102',
@@ -72,7 +73,7 @@ function _creatNots() {
       },
     })
     notes.push({
-      id: 'n102',
+      id: 'n103',
       type: 'keepImgCmp',
       info: {
         title: 'img title',
@@ -83,7 +84,7 @@ function _creatNots() {
       },
     })
     notes.push({
-      id: 'n103',
+      id: 'n104',
       type: 'keepTodoCmp',
       info: {
         label: 'Get my stuff together',
@@ -91,6 +92,9 @@ function _creatNots() {
           { txt: 'Driving liscence', doneAt: null },
           { txt: 'Coding power', doneAt: 187111111 },
         ],
+      },
+      style: {
+        backgroundColor: '#00d',
       },
     })
 
