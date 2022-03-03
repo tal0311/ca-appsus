@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 /* setup */
 @import 'setup/vars.css';
 /* @import 'setup/typography.css';
@@ -16,6 +18,7 @@
 @import 'components/mail-list.css';
 @import 'components/mail-full.css';
 @import 'components/mail-preview.css';
+@import 'components/mail-compose.css';
 
 /* keep components */
 @import './components/keep-input.css';

@@ -1,0 +1,14 @@
+
+.mail-compose {
+    width: 250px;
+}
+
+.mini-title{
+    background-color: rgb(221, 221, 221);
+    padding: .25em 1em;
+}
+
+.form-field {
+    width: 250px;
+    padding: .25em 1em;
+}

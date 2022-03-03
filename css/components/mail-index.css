@@ -1,22 +1,25 @@
 .main-area {
     display: flex;
-    
+
 }
 
 .side-menu {
     margin: .5em;
     padding: .5em 2em .5em .5em;
-    background-color: rgb(241, 210, 210);
+    /* background-color: rgb(241, 210, 210); */
+    border-right: 1px solid black;
 }
 
+.side-menu a {
+    text-decoration: none;
+    margin-bottom: .5em;
+    display: flex;
+}
 
 
 .main-display {
     margin: .5em;
     padding: .5em 1em;
-    background-color: rgb(228, 228, 228);
+    /* background-color: rgb(228, 228, 228); */
     flex-grow: 1;
 }
-
-
-

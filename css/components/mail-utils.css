@@ -1,14 +1,19 @@
 .mail-utils {
-    background-color: rgb(237, 255, 189);
-    margin: 0 .5em;
+    /* background-color: rgb(237, 255, 189); */
     padding: 1em;
+
 }
 
-.btn-compose {
-    background-color: rgb(187, 255, 252);
+.mail-utils a {
+    text-decoration: none;
+}
+
+.compose {
+    background-color: rgb(224, 224, 224);
+    color: black;
     display: inline-block;
-}
+    padding: .75em;
+    border: 1px solid black;
+    border-radius: 25px;
 
-.btn-compose:hover {
-    cursor: pointer;
 }

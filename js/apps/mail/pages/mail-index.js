@@ -1,26 +1,29 @@
 import { mailService } from '../../../services/mail-service.js';
 // import mailList from '../cmp/mail-list.cmp.js';
 
+
 export default {
     name: 'mail-index',
     template: `
     <section class="mail-index app-main">
-        <h1>Mail</h1>
         <div class="mail-utils">
-            <router-link to="/mail/compose" >Compose Mail</router-link>
+            <router-link to="/mail/compose" class="compose">
+                <span >Composes + </span>  
+                <!-- <img src="../icons/plus.png" alt=""> -->
+            </router-link>
         </div>
         <div class="main-area">
             <div class="side-menu">
-                <div>
-                <div>
+                <div class="side-btn">
                     <router-link to="/mail/allMail" @click="mailType='allMail', showType()">All {{unreadCount}}</router-link>
                 </div>
+                <div class="side-btn">
                     <router-link to="/mail/inbox" @click="mailType='inbox', showType()">inbox</router-link>
                 </div>
-                <div>
+                <div class="side-btn">
                     <router-link to="/mail/sent" @click="mailType='sent', showType() ">Sent</router-link>
                 </div>
-                <div>
+                <div class="side-btn">
                     <router-link to="/mail/starred" @click="mailType='starred', showType()">Starred</router-link>
                 </div>
             </div>
@@ -82,9 +85,7 @@ export default {
         },
         formattedDate() {
             this.mails.map(mail => {
-                console.log('yay');
                 mail.time = new Date(mail.time).toLocaleTimeString();
-                console.log(mail.time);
             });
         }
     },

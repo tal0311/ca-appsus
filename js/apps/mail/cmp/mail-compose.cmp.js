@@ -4,12 +4,11 @@ export default {
     name: 'mail-compose',
     template: `
     <section class="mail-compose">
-        <h3>New Message</h3>
+        <div class="mini-title">New Message</div>
         <form @submit.prevent="send">
-            <input type="text" required v-model="mailToAdd.peer" placeholder="To" ref="address">
-            <input type="text"  v-model="mailToAdd.subject" placeholder="Subject">
-            <textarea v-model="mailToAdd.body" cols="30" rows="10" style="resize: none;"></textarea>
-            <br>
+            <div><input class="form-field" type="text" required v-model="mailToAdd.peer" placeholder="To" ref="address"></div>
+            <div><input class="form-field" type="text"  v-model="mailToAdd.subject" placeholder="Subject"></div>
+            <div><textarea class="form-field" v-model="mailToAdd.body" cols="30" rows="10" style="resize: none;"></textarea></div>
             <button >Send</button>
         </form>
     </section>
