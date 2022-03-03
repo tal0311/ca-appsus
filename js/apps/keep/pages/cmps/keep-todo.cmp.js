@@ -14,7 +14,7 @@ export default {
 
          <label htmlFor="done" v-for="todo in note.info.todos">
                  <p>{{todo.txt}}</p>
-                <input type="checkbox" name="done" id="" />
+                <input type="checkbox" name="done" id=""  @click="atDone"/>
                 <p>done at: {{todo.doneAt}}</p>
               </label>
               <div class="action-container">
@@ -38,6 +38,9 @@ export default {
     }
   },
   methods: {
+    atDone() {
+      console.log('done')
+    },
     togglePin() {
       console.log(this.note.id)
       this.$emit('pin', this.note.id)
