@@ -1,0 +1,17 @@
+.main-area {
+    display: flex;
+}
+
+.side-menu {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1em;
+}
+
+.side-menu-item {
+    margin: .5em 0;
+}
+
+
+
+

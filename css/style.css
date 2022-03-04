@@ -13,7 +13,7 @@
 @import 'components/header.css';
 
 /* mail componenets */
-@import 'components/mail-index.css';
+@import 'components/mail-app.css';
 @import 'components/mail-utils.css';
 @import 'components/mail-list.css';
 @import 'components/mail-full.css';
