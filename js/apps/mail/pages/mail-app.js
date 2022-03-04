@@ -9,22 +9,37 @@ export default {
     template: `
     <section class="mail-app app-main">
         <div class="mail-utils">
-            <div class="compose">COMPOSE+</div>
+            <div class="compose" @click="composing = true">COMPOSE+</div>
         </div>
         <div class="main-area">
             <nav class="side-menu">
-                <div @click="showFolderMails('all')" class="side-menu-item">all</div>
-                <div @click="showFolderMails('inbox')" class="side-menu-item">inbox</div>
-                <div @click="showFolderMails('sent')" class="side-menu-item">sent</div>
-                <div @click="showFolderMails('trash')" class="side-menu-item">trash</div>
+                <div class="all-mail side-menu-item">
+                    <div><img src="js/apps/mail/icons/all-mail.png" class="icon side-menu-btn"></div>    
+                    <div @click="showFolderMails('all')" class="side-menu-btn word">All {{unreadCount}}</div>
+                </div>
+                <div class="inbox side-menu-item" >
+                    <div><img src="js/apps/mail/icons/inbox.png" class="icon side-menu-btn"></div>    
+                    <div @click="showFolderMails('inbox')" class="side-menu-btn word">Inbox</div>
+                </div>
+                <div class="sent side-menu-item">
+                    <div><img src="js/apps/mail/icons/sent.png" class="icon side-menu-btn"></div>    
+                    <div @click="showFolderMails('sent')" class="side-menu-btn word">Sent</div>
+                </div>
+                <div class="trash side-menu-item">
+                    <div><img src="js/apps/mail/icons/trash.png" class="icon side-menu-btn"></div>    
+                    <div @click="showFolderMails('trash')" class="side-menu-btn word">Trash</div>
+                </div>
             </nav>
             <div class="mails-area">
-                <mail-list 
-                :mails="renderedMails"
-                @trash='MoveToTrash'
-                @markRead="markRead"
-                @permDelete="permDelete"
-                />
+                <mail-list
+                    v-if:="!composing"
+                    :mails="renderedMails"
+                    @trash='MoveToTrash'
+                    @markRead="markRead"
+                    @permDelete="permDelete"
+                    >
+                </mail-list>
+                <mail-compose v-if:="composing" @addNewMail="addSentMail"/>
             </div>
 
 
@@ -38,10 +53,17 @@ export default {
             selectedBook: null,
             filterBy: null,
             unreadCount: null,
+            composing: false,
         };
     },
     methods: {
+        countUnread() {
+            this.mails.map(mail => {
+                if (!mail.isRead) this.unreadCount++;
+            });
+        },
         showFolderMails(folder) {
+            this.composing = false
             if (folder === 'inbox' || folder === 'sent') {
                 this.renderedMails = this.mails.filter(mail =>
                     !mail.trashed && mail.direc === `${folder}`);
@@ -56,13 +78,13 @@ export default {
             if (mail.isRead) return;
             mail.isRead = true;
             mailService.save(mail)
-                .then(this.unreadCount--);
+                .then(this.countUnread());
         },
         MoveToTrash(mail) {
             // console.log('trash app', mail);
             mail.trashed = true;
             mailService.save(mail)
-                .then(mail => console.log('mail trashed'));
+                .then(this.countUnread());
         },
         permDelete(mail) {
             const mailId = mail.id;
@@ -70,7 +92,15 @@ export default {
                 .then(() => {
                     const idx = this.mails.findIndex((mail) => mail.id === mailId);
                     this.mails.splice(idx, 1);
-                });
+                    this.showFolderMails('all');
+                })
+                .then(this.countUnread());
+        },
+        addSentMail(mailToAdd) {
+            mailService.save(mailToAdd)
+                .then(mail => this.mails.push(mailToAdd))
+                .then(this.showFolderMails('all'))
+            // .then(eventbus)
         },
 
     },
@@ -80,17 +110,14 @@ export default {
             // const regex = new RegExp(this.filterBy.title, 'i');
             // return this.mails.filter(mail => regex.test(mail.title));
         },
-        // formatDate(mail) {
-        //     mail.time = new Date(mail.time).toLocaleTimeString();
-        // }
     },
     created() {
         mailService.query()
             .then(mails => {
                 this.mails = mails;
-                // this.mails.foreach(mail => this.formatDate(mail));
                 this.renderedMails = mails;
-            });
+            })
+            .then(mails => this.countUnread());
 
     },
     components: {
