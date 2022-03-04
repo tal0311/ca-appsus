@@ -1,5 +1,5 @@
 .mail-utils {
-    background-color: rgb(187, 255, 0);
+    /* background-color: rgb(187, 255, 0); */
     padding: 1em;
     border-bottom: 1px solid rgb(231, 231, 231);
     margin-bottom: 1em;
@@ -9,12 +9,4 @@
     text-decoration: none;
 }
 
-.compose {
-    background-color: rgb(235, 235, 235);
-    color: black;
-    display: inline-block;
-    padding: .75em;
-    border: 1px solid black;
-    border-radius: 25px;
 
-}

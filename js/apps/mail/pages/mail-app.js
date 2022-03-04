@@ -9,17 +9,22 @@ export default {
     template: `
     <section class="mail-app app-main">
         <div class="mail-utils">
-            <div class="compose" @click="composing = true">COMPOSE+</div>
+            <div class="compose" @click="composing = true">
+                <img src="js/apps/mail/icons/plus.png" class="plus-sign">
+                <span>
+                    COMPOSE
+                </span> 
+            </div>
         </div>
         <div class="main-area">
             <nav class="side-menu">
-                <div class="all-mail side-menu-item">
-                    <div><img src="js/apps/mail/icons/all-mail.png" class="icon side-menu-btn"></div>    
-                    <div @click="showFolderMails('all')" class="side-menu-btn word">All {{unreadCount}}</div>
-                </div>
                 <div class="inbox side-menu-item" >
                     <div><img src="js/apps/mail/icons/inbox.png" class="icon side-menu-btn"></div>    
-                    <div @click="showFolderMails('inbox')" class="side-menu-btn word">Inbox</div>
+                    <div @click="showFolderMails('inbox')" class="side-menu-btn word">Inbox ({{unreadCount}})</div>
+                </div>
+                <div class="all-mail side-menu-item">
+                    <div><img src="js/apps/mail/icons/all-mail.png" class="icon side-menu-btn"></div>    
+                    <div @click="showFolderMails('all')" class="side-menu-btn word">All</div>
                 </div>
                 <div class="sent side-menu-item">
                     <div><img src="js/apps/mail/icons/sent.png" class="icon side-menu-btn"></div>    
@@ -30,6 +35,7 @@ export default {
                     <div @click="showFolderMails('trash')" class="side-menu-btn word">Trash</div>
                 </div>
             </nav>
+            <div v-if="areRenderedMails">yay</div>
             <div class="mails-area">
                 <mail-list
                     v-if:="!composing"
@@ -50,7 +56,6 @@ export default {
         return {
             mails: null,
             renderedMails: this.mails,
-            selectedBook: null,
             filterBy: null,
             unreadCount: null,
             composing: false,
@@ -58,6 +63,7 @@ export default {
     },
     methods: {
         countUnread() {
+            this.unreadCount = 0
             this.mails.map(mail => {
                 if (!mail.isRead) this.unreadCount++;
             });
@@ -92,7 +98,7 @@ export default {
                 .then(() => {
                     const idx = this.mails.findIndex((mail) => mail.id === mailId);
                     this.mails.splice(idx, 1);
-                    this.showFolderMails('all');
+                    this.showFolderMails('inbox');
                 })
                 .then(this.countUnread());
         },
@@ -109,7 +115,10 @@ export default {
             if (!this.filterBy) return this.mails;
             // const regex = new RegExp(this.filterBy.title, 'i');
             // return this.mails.filter(mail => regex.test(mail.title));
-        },
+        },   
+        areRenderedMails() {
+            // if (this.renderedMails.length) return true
+        }
     },
     created() {
         mailService.query()
@@ -117,7 +126,9 @@ export default {
                 this.mails = mails;
                 this.renderedMails = mails;
             })
-            .then(mails => this.countUnread());
+            .then(mails => this.countUnread())
+            .then(mails => this.showFolderMails('inbox'))
+            
 
     },
     components: {
