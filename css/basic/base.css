@@ -10,6 +10,19 @@ body {
   font-size: 0.9em;
 
 }
+img,
+iframe {
+  height: 150px;
+  width: auto;
+}
+.note {
+  border: 1px solid rgba(0, 0, 0, 0.28);
+  border-radius: 1em;
+  padding: 2%;
+  position: relative;
+  height: 300px;
+  width: auto;
+}
 
 body a {
   text-decoration: none;
