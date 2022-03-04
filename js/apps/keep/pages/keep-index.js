@@ -4,6 +4,7 @@ import keepVideoCmp from './cmps/keep-video.cmp.js'
 import keepTxtCmp from './cmps/keep-txt.cmp.js'
 import keepImgCmp from './cmps/keep-img.cmp.js'
 import keepAddNoteCmp from './keep-add-note.cmp.js'
+import keepFilterCmp from './keep-filter.cmp.js'
 
 export default {
   name: 'keep-index',
@@ -11,7 +12,7 @@ export default {
   template: `
     <section class="keep-index app-main">
     <h1>keep app</h1>
-    
+    <keep-filter-cmp @filtered="setFilterBy"/>
     <section class="add-note ">
       <!-- add new note -->
       <keep-add-note-cmp @new-note="addNote"/>
@@ -55,19 +56,19 @@ export default {
     keepTxtCmp,
     keepImgCmp,
     keepAddNoteCmp,
+    keepFilterCmp,
   },
   created() {
     keepService.query().then((notes) => {
       this.notes = notes.filter((note) => !note.isPinned)
       this.pinned = notes.filter((note) => note.isPinned)
-      console.log('notes:', this.notes)
-      console.log('pinned:', this.pinned)
     })
   },
   data() {
     return {
       pinned: null,
       notes: null,
+      filterValue: null,
     }
   },
 
@@ -173,6 +174,17 @@ export default {
         })
       })
     },
+    setFilterBy(filterBy) {
+      this.filterValue = filterBy
+      console.log('filterValue', this.filterValue)
+    },
   },
-  computed: {},
+  computed: {
+    showNotes() {
+      if (this.filterValue) {
+        console.log(this.filterValue)
+      }
+      console.log('no filter')
+    },
+  },
 }
