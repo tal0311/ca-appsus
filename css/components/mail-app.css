@@ -6,13 +6,28 @@
     display: flex;
     flex-direction: column;
     padding: 0 1em;
+    /* margin: 0 1em; */
 }
 
+
+
 .side-menu-item {
+    display: flex;
+    /* justify-content: space-between; */
     padding: .5em 0;
+    width: 4em;
+}
+
+.side-menu-btn.word {
+    flex-grow: 1;
+    margin-left: .5em;
 }
 
 .side-menu-item:hover {
     cursor: pointer;
     /* box-shadow: 0 4px 2px -0px gray;} */
+}
+
+.side-menu-btn {
+    height: 1em;
 }

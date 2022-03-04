@@ -13,10 +13,27 @@ export default {
         </div>
         <div class="main-area">
             <nav class="side-menu">
-                <div @click="showFolderMails('all')" class="side-menu-item">all</div>
-                <div @click="showFolderMails('inbox')" class="side-menu-item">inbox</div>
-                <div @click="showFolderMails('sent')" class="side-menu-item">sent</div>
-                <div @click="showFolderMails('trash')" class="side-menu-item">trash</div>
+                <div class="all-mail side-menu-item">
+                    <div><img src="js/apps/mail/icons/all-mail.png" class="icon side-menu-btn"></div>    
+                    <div @click="showFolderMails('all')" class="side-menu-btn word">All</div>
+                </div>
+                <div class="inbox side-menu-item" >
+                    <div><img src="js/apps/mail/icons/inbox.png" class="icon side-menu-btn"></div>    
+                    <div @click="showFolderMails('inbox')" class="side-menu-btn word">Inbox</div>
+                </div>
+                <div class="sent side-menu-item">
+                    <div><img src="js/apps/mail/icons/sent.png" class="icon side-menu-btn"></div>    
+                    <div @click="showFolderMails('sent')" class="side-menu-btn word">Sent</div>
+                </div>
+                <div class="trash side-menu-item">
+                    <div><img src="js/apps/mail/icons/trash.png" class="icon side-menu-btn"></div>    
+                    <div @click="showFolderMails('trash')" class="side-menu-btn word">Trash</div>
+                </div>
+                
+                <!-- <div class="side-menu-icons">                    
+                </div>
+                <div class="side-menu-word">
+                </div> -->
             </nav>
             <div class="mails-area">
                 <mail-list 
