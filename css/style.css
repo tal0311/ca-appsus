@@ -24,6 +24,7 @@
 @import './components/keep-input.css';
 @import 'components/keep-pinned-notes.css';
 @import 'components/keep-notes-container.css';
+@import './components/keep-note.css';
 
 /* media query */
 @import 'basic/mq.css';

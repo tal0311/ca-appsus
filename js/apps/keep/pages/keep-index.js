@@ -4,6 +4,8 @@ import keepVideoCmp from './cmps/keep-video.cmp.js'
 import keepTxtCmp from './cmps/keep-txt.cmp.js'
 import keepImgCmp from './cmps/keep-img.cmp.js'
 import keepAddNoteCmp from './keep-add-note.cmp.js'
+import keepFilterCmp from './keep-filter.cmp.js'
+import keepFilterResultsCmp from './cmps/keep-filter-results.cmp.js'
 
 export default {
   name: 'keep-index',
@@ -11,7 +13,7 @@ export default {
   template: `
     <section class="keep-index app-main">
     <h1>keep app</h1>
-    
+    <keep-filter-cmp @filtered="setFilterBy"/>
     <section class="add-note ">
       <!-- add new note -->
       <keep-add-note-cmp @new-note="addNote"/>
@@ -27,12 +29,20 @@ export default {
         @change-color="addColorToNote"
         @pin="pinNote"
         ></component>
-       
+        
+        
+        
+      </section>
       
       
-    </section>
-   
-   
+        <keep-filter-results-cmp 
+        v-if="filterValue"
+        :notes="booksToShow"/>
+
+
+         
+
+
     <section class="notes-container flex" >
 
         <component class="note" :is="cmp.type" 
@@ -42,9 +52,8 @@ export default {
         @change-color="addColorToNote"
         @pin="pinNote"
         ></component>
-
+        
     </section>
-   
 
     
     </section>
@@ -55,19 +64,20 @@ export default {
     keepTxtCmp,
     keepImgCmp,
     keepAddNoteCmp,
+    keepFilterCmp,
+    keepFilterResultsCmp,
   },
   created() {
     keepService.query().then((notes) => {
       this.notes = notes.filter((note) => !note.isPinned)
       this.pinned = notes.filter((note) => note.isPinned)
-      console.log('notes:', this.notes)
-      console.log('pinned:', this.pinned)
     })
   },
   data() {
     return {
       pinned: null,
       notes: null,
+      filterValue: null,
     }
   },
 
@@ -142,16 +152,16 @@ export default {
       })
     },
     removeNote(id) {
-      console.log('note:', id)
+      console.log('id:', id)
       keepService.get(id).then((note) => {
-        console.log(note)
+        console.log('new note:', note)
         if (note.isPinned) {
           console.log('pinned remove')
           let idx = this.pinned.findIndex((note) => note.id === id)
           this.pinned.splice(idx, 1)
         } else {
           console.log('not pinned remove')
-          let idx = this.pinned.findIndex((note) => note.id)
+          let idx = this.notes.findIndex((note) => note.id === id)
           this.notes.splice(idx, 1)
         }
       })
@@ -173,6 +183,16 @@ export default {
         })
       })
     },
+    setFilterBy(filterBy) {
+      console.log(filterBy)
+      this.filterValue = filterBy
+    },
   },
-  computed: {},
+  computed: {
+    booksToShow() {
+      if (!this.filterValue) return this.notes
+      const regex = new RegExp(this.filterValue.title, 'i')
+      return this.notes.filter((note) => regex.test(note.info.title))
+    },
+  },
 }

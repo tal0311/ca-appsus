@@ -10,11 +10,12 @@ export default {
           name="title" 
           placeholder="title"
            v-model="newNote.TitleInput"/>
-          <input type="text" 
-          :placeholder="contentPlaceHolder"
-           v-model="newNote.contentInput" />
+
+           <textarea :placeholder="contentPlaceHolder"
+           v-model="newNote.contentInput" ></textarea>
+          
  
-          <input  title="Pin note" type="checkbox"
+           <input  title="Pin note" type="checkbox"
            name="isPinned" value="true" v-model="newNote.isPinned"/>
              
               
@@ -60,7 +61,16 @@ export default {
   },
   methods: {
     saveNote() {
-      console.log(this.newNote.contentInput)
+      if (this.newNote.type === 'keepVideoCmp') {
+        console.log('type video')
+        const regRx = new RegExp(/watch/)
+        this.newNote.contentInput = this.newNote.contentInput.replace(
+          regRx,
+          'embed'
+        )
+        
+      }
+      console.log(this.newNote.type)
       this.$emit('new-note', this.newNote)
       this.newNote.TitleInput = ''
       this.newNote.contentInput = ''

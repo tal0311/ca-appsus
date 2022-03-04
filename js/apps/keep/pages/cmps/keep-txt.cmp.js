@@ -15,8 +15,8 @@ export default {
 
             
             <h4 >{{note.info.title}}</h4>
-              <textarea :style="{backgroundColor:color}" cols="30" rows="10"
-              >{{note.info.content}}</textarea>
+              <p :style="{backgroundColor:color}" cols="30" rows="10"
+              >{{note.info.content}}</p>
             <div class="action-container">
                 <input @change="addColor" type="color" name="color"
                  v-model="color"/>
