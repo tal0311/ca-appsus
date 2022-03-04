@@ -1,11 +1,8 @@
 import susApp from './pages/sus-app.cmp.js'
 import keepIndex from './apps/keep/pages/keep-index.js';
-import mailIndex from './apps/mail/pages/mail-index.js';
-import mailInbox from './apps/mail/cmp/mail-inbox.cmp.js';
-import mailSent from './apps/mail/cmp/mail-sent.cmp.js';
-import mailStarred from './apps/mail/cmp/mail-starred.cmp.js';
-import mailAll from './apps/mail/cmp/mail-all.cmp.js';
-import mailCompose from './apps/mail/cmp/mail-compose.cmp.js';
+import mailApp from './apps/mail/pages/mail-app.js';
+import mailDetails from './apps/mail/cmp/mail-details.cmp.js';
+
 
 const routes = [
     {
@@ -18,32 +15,16 @@ const routes = [
             },
             {
                 path: 'mail',
-                component: mailIndex,
-                children: [
-                    {
-                        path: 'allMail',
-                        component: mailAll
-                    },
-                    {
-                        path: 'inbox',
-                        component: mailInbox
-                    },
-                    {
-                        path: 'sent',
-                        component: mailSent
-                    },
-                    {
-                        path: 'starred',
-                        component: mailStarred
-                    },
-                    {
-                        path: 'compose',
-                        component: mailCompose
-                    },
-        
-                ]
+                component: mailApp,
+                children:[
+                    
+                ]                
             },
-
+            {
+                path: 'mail/:mailId',
+                component: mailDetails,                
+            },
+            
         ]
     },
 

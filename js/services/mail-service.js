@@ -44,13 +44,14 @@ function _setNextPrevmailId(mail) {
 // Factory Method:
 function getEmptymail() {
     return {
-        id: '',
-        subject: '',
-        body: '',
+        id: '102',
+        subject: makeLorem(2),
+        body: makeLorem(50),
         isRead: true,
-        time: 0,
-        peer: '',
-        label: 'sent',
+        time: 1551133930594,
+        peer: 'meir@baba.com',
+        direc: 'inbox',
+        starred: false,
     };
 }
 
@@ -58,54 +59,10 @@ function getEmptymail() {
 function _creatmails() {
     let mails = utilService.loadFromStorage(STORAGE_KEY);
     if (!mails || !mails.length) {
-        mails = [];
-        mails.push({
-            id: '101',
-            subject: 'miss you',
-            body: 'would love to catch up sometime',
-            isRead: false,
-            time: 1551133930594,
-            peer: 'avi@baba.com',
-            label: 'inbox',
-        });
-        mails.push({
-            id: '102',
-            subject: 'Hello you',
-            body: 'Hello love to catch up sometime',
-            isRead: true,
-            time: 1551133930594,
-            peer: 'meir@baba.com',
-            label: 'inbox',
-        });
-        mails.push({
-            id: '103',
-            subject: 'yoyo you',
-            body: 'yoyo love to catch up sometime',
-            isRead: false,
-            time: 1551133930594,
-            peer: 'david@baba.com',
-            label: 'inbox',
-        });
-        mails.push({
-            id: '104',
-            subject: 'yoyo you',
-            body: 'yoyo love to catch up sometime',
-            isRead: false,
-            time: 1551133930594,
-            peer: 'david@baba.com',
-            label: 'sent',
-        });
-        mails.push({
-            id: '105',
-            subject: 'yoyo you',
-            body: 'yoyo love to catch up sometime',
-            isRead: true,
-            time: 1551133930594,
-            peer: 'david@baba.com',
-            label: 'starred',
-        });
+        mails = getFakeMails()
         utilService.saveToStorage(STORAGE_KEY, mails);
     }
+    // console.log(mails);
     return mails;
 }
 
@@ -115,13 +72,136 @@ function _creatmail(id, subject, body, isRead, sentAt,to) {
         subject,
         body,
         isRead,
-        sentAt,
-        to,
+        time,
+        peer,
+        direc,
+        starred,
     )
     mail.id = utilService.makeId()
     return mail;
 }
 
+
+
 function getFakeMails() {
-    console.log('yay');
+    return [
+        {
+            id: '101',
+            subject: makeLorem(2),
+            body: makeLorem(50),
+            isRead: false,
+            time: 1551133930594,
+            peer: 'avi@baba.com',
+            direc: 'inbox',
+            starred: false,
+        },
+        {
+            id: '102',
+            subject: makeLorem(2),
+            body: makeLorem(50),
+            isRead: true,
+            time: 1551133930594,
+            peer: 'meir@baba.com',
+            direc: 'inbox',
+            starred: false,
+        },
+        {
+            id: '103',
+            subject: makeLorem(2),
+            body: makeLorem(50),
+            isRead: false,
+            time: 1551133930594,
+            peer: 'david@baba.com',
+            direc: 'inbox',
+            starred: false,
+        },
+        {
+            id: '104',
+            subject: makeLorem(2),
+            body: makeLorem(50),
+            isRead: false,
+            time: 1551133930594,
+            peer: 'david@baba.com',
+            direc: 'sent',
+            starred: false,
+        },
+        {
+            id: '105',
+            subject: makeLorem(2),
+            body: makeLorem(50),
+            isRead: true,
+            time: 1551133930594,
+            peer: 'david@baba.com',
+            direc: 'inbox',
+            starred: false,
+        },
+        {
+            id: '106',
+            subject: makeLorem(2),
+            body: makeLorem(50),
+            isRead: false,
+            time: 1551133930594,
+            peer: 'avi@baba.com',
+            direc: 'sent',
+            starred: false,
+        },
+        {
+            id: '107',
+            subject: makeLorem(2),
+            body: makeLorem(50),
+            isRead: true,
+            time: 1551133930594,
+            peer: 'meir@baba.com',
+            direc: 'inbox',
+            starred: false,
+        },
+        {
+            id: '108',
+            subject: makeLorem(2),
+            body: makeLorem(50),
+            isRead: false,
+            time: 1551133930594,
+            peer: 'david@baba.com',
+            direc: 'inbox',
+            starred: false,
+        },
+        {
+            id: '109',
+            subject: makeLorem(2),
+            body: makeLorem(50),
+            isRead: false,
+            time: 1551133930594,
+            peer: 'david@baba.com',
+            direc: 'sent',
+            starred: false,
+        },
+        {
+            id: '110',
+            subject: makeLorem(2),
+            body: makeLorem(50),
+            isRead: true,
+            time: 1551133930594,
+            peer: 'david@baba.com',
+            direc: 'inbox',
+            starred: false,
+        }
+    ]
 }
+
+
+
+
+
+
+
+
+
+function makeLorem(wordCount = 100) {
+    const words = ['The sky', 'above', 'the port', 'was', 'the color of television', 'tuned', 'to', 'a dead channel', '.', 'All', 'this happened', 'more or less', '.', 'I', 'had', 'the story', 'bit by bit', 'from various people', 'and', 'as generally', 'happens', 'in such cases', 'each time', 'it', 'was', 'a different story', '.', 'It', 'was', 'a pleasure', 'to', 'burn'];
+    var txt = '';
+    while (wordCount > 0) {
+        wordCount--;
+        txt += words[Math.floor(Math.random() * words.length)] + ' ';
+    }
+    return txt;
+  }
