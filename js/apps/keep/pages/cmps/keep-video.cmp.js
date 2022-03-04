@@ -29,7 +29,7 @@ export default {
   created() {},
   data() {
     return {
-      color: this.note.style.backgroundColor,
+      color: this.note.style.backgroundColor || '#ffffff',
       pinned: this.note.isPinned,
     }
   },
@@ -39,7 +39,8 @@ export default {
       this.$emit('pin', this.note.id, this.pinned)
     },
     addColor() {
-      this.color
+      this.$emit('change-color', this.color, this.note.id)
+      console.log(this.color)
     },
     remove() {
       console.log('remove', this.noteId)

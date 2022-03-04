@@ -68,7 +68,7 @@ export default {
           regRx,
           'embed'
         )
-        console.log(this.newNote.contentInput)
+        
       }
       console.log(this.newNote.type)
       this.$emit('new-note', this.newNote)
