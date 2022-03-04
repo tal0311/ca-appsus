@@ -27,6 +27,7 @@ textarea {
   display: flex;
   margin-bottom: 3%;
   background-color: #ffff;
+  border-radius: 2em;
   padding: 1%;
   cursor: pointer;
 }

@@ -1,0 +1,9 @@
+.note-modal {
+  position: fixed;
+  top: 50vh;
+  right: 50vh;
+  transform: translateX(50%);
+  transform: translateY(-50%);
+  height: 50vh;
+  width: 50vw;
+}

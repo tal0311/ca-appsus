@@ -17,6 +17,15 @@
   top: 0;
   right: 0;
 }
+.add-note-container.flex label {
+  font-size: 1.5em;
+}
+.add-note-container.flex input[type='radio'] {
+  display: inline-block;
+  margin: 3%;
+  height: 1.5em;
+  width: 1.5em;
+}
 
 .add-note-container textarea {
   resize: none;
@@ -25,5 +34,14 @@
 @media (max-width: 600px) {
   .add-note {
     width: 80vw;
+  }
+  .add-note-container.flex input[type='radio'] {
+    display: inline-block;
+    margin: 3%;
+    height: 0.8em;
+    width: 0.8em;
+  }
+  .add-note-container.flex label {
+    font-size: 1em;
   }
 }

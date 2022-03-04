@@ -1,12 +1,21 @@
 export default {
   name: 'txt-cmp',
   props: ['note'],
-  emits: ['remove-note', 'duplicate-note', 'change-color', 'un-pin'],
+  emits: [
+    'remove-note',
+    'duplicate-note',
+    'change-color',
+    'un-pin',
+    'selected',
+  ],
 
   template: `
   
        
-          <section :style="{backgroundColor:color}" v-bind="$attrs">
+          <section
+           :style="{backgroundColor:color}"
+            v-bind="$attrs"
+            @click="select">
 
               <label htmlFor="pin">
                 &#9733;
@@ -22,8 +31,7 @@ export default {
                  v-model="color"/>
                 <button @click="remove">&#10754;</button>
                 <button @click="duplicate">&#x29C9;</button>
-
-                
+                                
               </div>
           </section>
 
@@ -37,6 +45,10 @@ export default {
     }
   },
   methods: {
+    select() {
+      console.log('ok')
+      this.$emit('selected', this.note)
+    },
     togglePin() {
       console.log(this.note.id)
       this.$emit('pin', this.note.id)
@@ -52,9 +64,6 @@ export default {
     duplicate() {
       console.log('dup', this.note.id)
       this.$emit('duplicate-note', this.note.id)
-    },
-    setStyle(style) {
-      console.log(style)
     },
   },
   computed: {},

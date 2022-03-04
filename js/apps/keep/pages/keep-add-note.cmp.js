@@ -20,22 +20,24 @@ export default {
              
               
           <button @click="saveNote">add note</button>
-          <label htmlFor="img">
-            img
-            <input type="radio" name="type" value="keepImgCmp" v-model="newNote.type" />
-          </label>
-          <label htmlFor="img">
-               video
-            <input type="radio" name="type" value="keepVideoCmp" v-model="newNote.type" />
-          </label>
-          <label htmlFor="img">
-               todo
-            <input type="radio" name="type" value="keepTodoCmp" v-model="newNote.type" />
-          </label>
-          <label htmlFor="img">
-               text
-            <input type="radio" name="type" value="keepTxtCmp" v-model="newNote.type" />
-          </label>
+          <div className="type-container">
+            <label htmlFor="img">
+              img
+              <input type="radio" name="type" value="keepImgCmp" v-model="newNote.type" />
+            </label>
+            <label htmlFor="img">
+                 video
+              <input type="radio" name="type" value="keepVideoCmp" v-model="newNote.type" />
+            </label>
+            <label htmlFor="img">
+                 todo
+              <input type="radio" name="type" value="keepTodoCmp" v-model="newNote.type" />
+            </label>
+            <label htmlFor="img">
+                 text
+              <input type="radio" name="type" value="keepTxtCmp" v-model="newNote.type" />
+            </label>
+          </div>
          
           
          

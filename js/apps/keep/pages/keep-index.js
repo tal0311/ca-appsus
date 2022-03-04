@@ -6,17 +6,18 @@ import keepImgCmp from './cmps/keep-img.cmp.js'
 import keepAddNoteCmp from './keep-add-note.cmp.js'
 import keepFilterCmp from './keep-filter.cmp.js'
 import keepFilterResultsCmp from './cmps/keep-filter-results.cmp.js'
+import keepPreviewCmp from './cmps/keep-preview.cmp.js'
 
 export default {
   name: 'keep-index',
   emits: ['remove', 'duplicate', 'change-color', 'pin'],
   template: `
     <section class="keep-index app-main">
-    <h1>keep app</h1>
-    <keep-filter-cmp @filtered="setFilterBy"/>
-    <section class="add-note ">
-      <!-- add new note -->
-      <keep-add-note-cmp @new-note="addNote"/>
+        <h1>keep app</h1>
+        <keep-filter-cmp @filtered="setFilterBy"/>
+        <section class="add-note ">
+          <!-- add new note -->
+        <keep-add-note-cmp @new-note="addNote"/>
     </section>
 
     <section class="pinned-notes-container flex" >
@@ -28,21 +29,15 @@ export default {
         @remove-note="removeNote" @duplicate-note="duplicateNote"
         @change-color="addColorToNote"
         @pin="pinNote"
+        @selected="setNotePreview"
         ></component>
-        
-        
-        
-      </section>
+   </section>
       
       
         <keep-filter-results-cmp 
-        v-if="filterValue"
-        :notes="booksToShow"/>
-
-
-         
-
-
+          v-if="filterValue"
+          :notes="booksToShow"/>
+ 
     <section class="notes-container flex" >
 
         <component class="note" :is="cmp.type" 
@@ -55,6 +50,16 @@ export default {
         
     </section>
 
+      <keep-preview-cmp 
+      @remove="removeNote"
+      @color="addColorToNote"
+      @duplicate="duplicateNote"
+      @close-modal="closePreview"
+      v-if="noteToPreview"
+      :note="noteToPreview"
+      />
+        
+
     
     </section>
     `,
@@ -66,6 +71,7 @@ export default {
     keepAddNoteCmp,
     keepFilterCmp,
     keepFilterResultsCmp,
+    keepPreviewCmp,
   },
   created() {
     keepService.query().then((notes) => {
@@ -78,10 +84,19 @@ export default {
       pinned: null,
       notes: null,
       filterValue: null,
+      noteToPreview: null,
     }
   },
 
   methods: {
+    closePreview() {
+      this.noteToPreview = null
+    },
+    setNotePreview(note) {
+      console.log('selected', note)
+      this.noteToPreview = note
+      console.log('this.noteToPreview:', this.noteToPreview)
+    },
     pinNote(id, isPinned) {
       console.log(id, isPinned)
 
