@@ -6,11 +6,13 @@ export default {
     template: `
     <section class="mail-list">
         <ul>
-            <li v-for="mail in mails" :key="mail.id" class="mail-preview-container">
-                <router-link :to="/mail/+mail.id">
-                    <mail-preview :mail="mail"/>
-                </router-link>
-                <!-- <mail-preview :mail='mail' @click="markRead(mail.id)"/> -->
+            <li v-for="mail in mails" :key="mail.id"  class="mail-preview-container">
+                    <mail-preview 
+                    :mail="mail" 
+                    @trash='MoveToTrash' 
+                    @markRead="markRead"
+                    @permDelete="permDelete"
+                    />
             </li>
         </ul>
     </section>
@@ -21,8 +23,15 @@ export default {
         };
     },
     methods: {
-
-
+        markRead(mail) {
+            this.$emit('markRead', mail)
+        },
+        MoveToTrash(mail) {
+            this.$emit('trash', mail)
+        },
+        permDelete(mail) {
+            this.$emit('permDelete', mail)
+        },
     },
     computed: {
 

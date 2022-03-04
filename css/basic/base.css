@@ -8,6 +8,7 @@ body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
   font-size: 0.9em;
+
 }
 img,
 iframe {
@@ -22,3 +23,12 @@ iframe {
   height: 300px;
   width: auto;
 }
+
+body a {
+  text-decoration: none;
+  color: black;
+}
+/* h1 {
+    color: blue;
+} */
+
