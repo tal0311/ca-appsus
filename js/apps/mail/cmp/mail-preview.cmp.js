@@ -16,10 +16,20 @@ export default {
                     <div>trashed: {{mail.trashed}}</div>    
                 </router-link>
             </div>
-            <div class="date-delete-btn">
+            <div class="date-delete">
                 <div>{{formattedTime}}</div>    
-                <button v-if="!mail.trashed" @click="MoveToTrash">Trash</button>
-                <button v-if="mail.trashed" @click="permDelete">Delete</button>
+                <img 
+                    src="js/apps/mail/icons/trash.png"
+                    v-if="!mail.trashed"
+                    @click="MoveToTrash"
+                    
+                >
+                <img 
+                    src="js/apps/mail/icons/delete empty.png"
+                    v-if="mail.trashed"
+                    @click="permDelete"
+                    
+                >
             </div>
         </div>
         <hr class="preview-hr">
@@ -38,7 +48,7 @@ export default {
             this.$emit('trash', this.mail);
         },
         permDelete() {
-            const deleteMail = confirm('This item is already trashed. Do you want to perminantly delete it?');
+            const deleteMail = confirm('Perminantly delete this mail?');
             if (deleteMail) this.$emit('permDelete', this.mail)
         }
     },

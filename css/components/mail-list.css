@@ -4,3 +4,11 @@
     padding: 0 .5em;
     border-left: 1px solid rgb(219, 219, 219);
 }
+
+.mails-area{
+    flex-grow: 1;
+}
+
+.no-mails-msg {
+    text-align: center;
+}

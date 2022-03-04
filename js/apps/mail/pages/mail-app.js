@@ -35,8 +35,10 @@ export default {
                     <div @click="showFolderMails('trash')" class="side-menu-btn word">Trash</div>
                 </div>
             </nav>
-            <div v-if="areRenderedMails">yay</div>
             <div class="mails-area">
+                <div v-if="!areRenderedMails" class="no-mails-msg">
+                    There are no nore Emails in this box.
+                </div>
                 <mail-list
                     v-if:="!composing"
                     :mails="renderedMails"
@@ -105,7 +107,7 @@ export default {
         addSentMail(mailToAdd) {
             mailService.save(mailToAdd)
                 .then(mail => this.mails.push(mailToAdd))
-                .then(this.showFolderMails('all'))
+                .then(this.showFolderMails('inbox'))
             // .then(eventbus)
         },
 
@@ -117,7 +119,8 @@ export default {
             // return this.mails.filter(mail => regex.test(mail.title));
         },   
         areRenderedMails() {
-            // if (this.renderedMails.length) return true
+            if (!this.renderedMails) return
+            if (this.renderedMails.length) return true
         }
     },
     created() {
