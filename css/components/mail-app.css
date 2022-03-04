@@ -15,12 +15,12 @@
     display: flex;
     /* justify-content: space-between; */
     padding: .5em 0;
-    width: 4em;
+    
 }
 
 .side-menu-btn.word {
     flex-grow: 1;
-    margin-left: .5em;
+    margin-left: 1em;
 }
 
 .side-menu-item:hover {
