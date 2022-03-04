@@ -9,7 +9,16 @@ body {
   font-family: 'Roboto', sans-serif;
   font-size: 0.9em;
 }
-
-/* h1 {
-    color: blue;
-} */
+img,
+iframe {
+  height: 150px;
+  width: auto;
+}
+.note {
+  border: 1px solid rgba(0, 0, 0, 0.28);
+  border-radius: 1em;
+  padding: 2%;
+  position: relative;
+  height: 300px;
+  width: auto;
+}
