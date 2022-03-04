@@ -44,14 +44,15 @@ function _setNextPrevmailId(mail) {
 // Factory Method:
 function getEmptymail() {
     return {
-        id: '102',
-        subject: makeLorem(2),
-        body: makeLorem(50),
+        id: utilService.makeId(),
+        subject: utilService.makeLorem(2),
+        body: utilService.makeLorem(50),
         isRead: true,
         time: 1551133930594,
         peer: 'meir@baba.com',
         direc: 'inbox',
         starred: false,
+        trashed: false,
     };
 }
 
@@ -76,6 +77,7 @@ function _creatmail(id, subject, body, isRead, sentAt,to) {
         peer,
         direc,
         starred,
+        trashed,
     )
     mail.id = utilService.makeId()
     return mail;
@@ -86,104 +88,114 @@ function _creatmail(id, subject, body, isRead, sentAt,to) {
 function getFakeMails() {
     return [
         {
-            id: '101',
-            subject: makeLorem(2),
-            body: makeLorem(50),
+            id: utilService.makeId(),
+            subject: utilService.makeLorem(2),
+            body: utilService.makeLorem(50),
             isRead: false,
             time: 1551133930594,
             peer: 'avi@baba.com',
             direc: 'inbox',
             starred: false,
+            trashed: false,
         },
         {
-            id: '102',
-            subject: makeLorem(2),
-            body: makeLorem(50),
+            id: utilService.makeId(),
+            subject: utilService.makeLorem(2),
+            body: utilService.makeLorem(50),
             isRead: true,
             time: 1551133930594,
             peer: 'meir@baba.com',
             direc: 'inbox',
             starred: false,
+            trashed: false,
         },
         {
-            id: '103',
-            subject: makeLorem(2),
-            body: makeLorem(50),
+            id: utilService.makeId(),
+            subject: utilService.makeLorem(2),
+            body: utilService.makeLorem(50),
             isRead: false,
             time: 1551133930594,
             peer: 'david@baba.com',
             direc: 'inbox',
             starred: false,
+            trashed: false,
         },
         {
-            id: '104',
-            subject: makeLorem(2),
-            body: makeLorem(50),
+            id: utilService.makeId(),
+            subject: utilService.makeLorem(2),
+            body: utilService.makeLorem(50),
             isRead: false,
             time: 1551133930594,
             peer: 'david@baba.com',
             direc: 'sent',
             starred: false,
+            trashed: false,
         },
         {
-            id: '105',
-            subject: makeLorem(2),
-            body: makeLorem(50),
+            id: utilService.makeId(),
+            subject: utilService.makeLorem(2),
+            body: utilService.makeLorem(50),
             isRead: true,
             time: 1551133930594,
             peer: 'david@baba.com',
             direc: 'inbox',
             starred: false,
+            trashed: false,
         },
         {
-            id: '106',
-            subject: makeLorem(2),
-            body: makeLorem(50),
+            id: utilService.makeId(),
+            subject: utilService.makeLorem(2),
+            body: utilService.makeLorem(50),
             isRead: false,
             time: 1551133930594,
             peer: 'avi@baba.com',
             direc: 'sent',
             starred: false,
+            trashed: false,
         },
         {
-            id: '107',
-            subject: makeLorem(2),
-            body: makeLorem(50),
+            id: utilService.makeId(),
+            subject: utilService.makeLorem(2),
+            body: utilService.makeLorem(50),
             isRead: true,
             time: 1551133930594,
             peer: 'meir@baba.com',
             direc: 'inbox',
             starred: false,
+            trashed: false,
         },
         {
-            id: '108',
-            subject: makeLorem(2),
-            body: makeLorem(50),
+            id: utilService.makeId(),
+            subject: utilService.makeLorem(2),
+            body: utilService.makeLorem(50),
             isRead: false,
             time: 1551133930594,
             peer: 'david@baba.com',
             direc: 'inbox',
             starred: false,
+            trashed: false,
         },
         {
-            id: '109',
-            subject: makeLorem(2),
-            body: makeLorem(50),
+            id: utilService.makeId(),
+            subject: utilService.makeLorem(2),
+            body: utilService.makeLorem(50),
             isRead: false,
             time: 1551133930594,
             peer: 'david@baba.com',
             direc: 'sent',
             starred: false,
+            trashed: false,
         },
         {
-            id: '110',
-            subject: makeLorem(2),
-            body: makeLorem(50),
+            id: utilService.makeId(),
+            subject: utilService.makeLorem(2),
+            body: utilService.makeLorem(50),
             isRead: true,
             time: 1551133930594,
             peer: 'david@baba.com',
             direc: 'inbox',
             starred: false,
+            trashed: false,
         }
     ]
 }
@@ -196,12 +208,3 @@ function getFakeMails() {
 
 
 
-function makeLorem(wordCount = 100) {
-    const words = ['The sky', 'above', 'the port', 'was', 'the color of television', 'tuned', 'to', 'a dead channel', '.', 'All', 'this happened', 'more or less', '.', 'I', 'had', 'the story', 'bit by bit', 'from various people', 'and', 'as generally', 'happens', 'in such cases', 'each time', 'it', 'was', 'a different story', '.', 'It', 'was', 'a pleasure', 'to', 'burn'];
-    var txt = '';
-    while (wordCount > 0) {
-        wordCount--;
-        txt += words[Math.floor(Math.random() * words.length)] + ' ';
-    }
-    return txt;
-  }

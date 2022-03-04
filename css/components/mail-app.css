@@ -9,9 +9,10 @@
 }
 
 .side-menu-item {
-    margin: .5em 0;
+    padding: .5em 0;
 }
 
-
-
-
+.side-menu-item:hover {
+    cursor: pointer;
+    /* box-shadow: 0 4px 2px -0px gray;} */
+}
