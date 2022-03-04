@@ -17,4 +17,6 @@
   right: 0;
 }
 
-
+.add-note-container textarea {
+  resize: none;
+}

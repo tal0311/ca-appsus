@@ -5,6 +5,7 @@ import keepTxtCmp from './cmps/keep-txt.cmp.js'
 import keepImgCmp from './cmps/keep-img.cmp.js'
 import keepAddNoteCmp from './keep-add-note.cmp.js'
 import keepFilterCmp from './keep-filter.cmp.js'
+import keepFilterResultsCmp from './cmps/keep-filter-results.cmp.js'
 
 export default {
   name: 'keep-index',
@@ -28,12 +29,20 @@ export default {
         @change-color="addColorToNote"
         @pin="pinNote"
         ></component>
-       
+        
+        
+        
+      </section>
       
       
-    </section>
-   
-   
+        <keep-filter-results-cmp 
+        v-if="filterValue"
+        :notes="booksToShow"/>
+
+
+         
+
+
     <section class="notes-container flex" >
 
         <component class="note" :is="cmp.type" 
@@ -43,9 +52,8 @@ export default {
         @change-color="addColorToNote"
         @pin="pinNote"
         ></component>
-
+        
     </section>
-   
 
     
     </section>
@@ -57,6 +65,7 @@ export default {
     keepImgCmp,
     keepAddNoteCmp,
     keepFilterCmp,
+    keepFilterResultsCmp,
   },
   created() {
     keepService.query().then((notes) => {
@@ -143,16 +152,16 @@ export default {
       })
     },
     removeNote(id) {
-      console.log('note:', id)
+      console.log('id:', id)
       keepService.get(id).then((note) => {
-        console.log(note)
+        console.log('new note:', note)
         if (note.isPinned) {
           console.log('pinned remove')
           let idx = this.pinned.findIndex((note) => note.id === id)
           this.pinned.splice(idx, 1)
         } else {
           console.log('not pinned remove')
-          let idx = this.pinned.findIndex((note) => note.id)
+          let idx = this.notes.findIndex((note) => note.id === id)
           this.notes.splice(idx, 1)
         }
       })
@@ -175,16 +184,15 @@ export default {
       })
     },
     setFilterBy(filterBy) {
+      console.log(filterBy)
       this.filterValue = filterBy
-      console.log('filterValue', this.filterValue)
     },
   },
   computed: {
-    showNotes() {
-      if (this.filterValue) {
-        console.log(this.filterValue)
-      }
-      console.log('no filter')
+    booksToShow() {
+      if (!this.filterValue) return this.notes
+      const regex = new RegExp(this.filterValue.title, 'i')
+      return this.notes.filter((note) => regex.test(note.info.title))
     },
   },
 }
