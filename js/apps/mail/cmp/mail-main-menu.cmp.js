@@ -3,7 +3,14 @@ export default {
     props:['unread'],
     template: `
     <section class="mail-main-menu">
+        <!-- full screen -->
         <nav class="side-menu">
+            <div @click="composing" class="compose">
+                <img src="js/apps/mail/icons/plus.png" class="plus-sign">
+                <span>
+                    COMPOSE
+                </span> 
+            </div>
             <div class="inbox side-menu-item" >
                 <div><img src="js/apps/mail/icons/inbox.png" class="icon side-menu-btn"></div>    
                 <div @click="showFolderMails('inbox')" class="side-menu-btn word">Inbox ({{unread}})</div>
@@ -21,17 +28,21 @@ export default {
                 <div @click="showFolderMails('trash')" class="side-menu-btn word">Trash</div>
             </div>
         </nav>
-        <button class="btn-menu" onclick="toggleMenu()">☰</button>
     </section>
+    
     `,
     data() {
         return {
+            openHamb: false,
 
         };
     },
     methods: {
         showFolderMails(folder) {
             this.$emit('folderMails', folder);
+        },
+        composing() {
+            this.$emit('composing')
         }
 
     },

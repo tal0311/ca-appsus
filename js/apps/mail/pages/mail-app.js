@@ -4,21 +4,27 @@ import mailList from '../cmp/mail-list.cmp.js';
 import mailCompose from '../cmp/mail-compose.cmp.js';
 import mailPreview from '../cmp/mail-preview.cmp.js';
 import mailMainMenu from '../cmp/mail-main-menu.cmp.js';
+import mailHamb from '../cmp/mail-hamb.cmp.js';
 
 export default {
     name: 'mail-app',
     template: `
     <section class="mail-app app-main">
         <div class="mail-utils">
-            <div  v-if="" @click="composing = true" class="compose" style=>
-                <img src="js/apps/mail/icons/plus.png" class="plus-sign">
-                <span>
-                    COMPOSE
-                </span> 
-            </div>
+            <button class="hamb-menu hamb-btn" @click="openHamb = !openHamb">☰</button>
         </div>
         <div class="main-area">
-            <mail-main-menu @folderMails='showFolderMails' :unread='unreadCount' />
+            <mail-hamb
+                v-if="openHamb"
+                @folderMails='showFolderMails' 
+                @composing="composing=true" 
+                :unread='unreadCount'>
+            </mail-hamb>
+            <mail-main-menu 
+                @folderMails='showFolderMails' 
+                @composing="composing=true" 
+                :unread='unreadCount'>
+            </mail-main-menu>
             <div class="mails-area">
                 <!-- mails list  -->
                 <mail-list
@@ -50,6 +56,7 @@ export default {
             filterBy: null,
             unreadCount: null,
             composing: false,
+            openHamb: false,
         };
     },
     methods: {
@@ -126,7 +133,8 @@ export default {
         mailList,
         mailCompose,
         mailPreview,
-        mailMainMenu
+        mailMainMenu,
+        mailHamb,
     }
 
 };

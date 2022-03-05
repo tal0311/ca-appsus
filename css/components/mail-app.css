@@ -1,6 +1,6 @@
 .mail-app {
- max-width: 980px;
- margin: auto;
+    max-width: 980px;
+    margin: auto;
 }
 
 .main-area {
@@ -8,7 +8,7 @@
 }
 
 .side-menu {
-    display: flex;
+    display: none;
     flex-direction: column;
     padding: 0 1em;
     /* margin: 0 1em; */
@@ -19,7 +19,7 @@
     align-items: center;
     /* justify-content: space-between; */
     padding: .5em 0;
-    
+
 }
 
 .side-menu-btn.word {
@@ -36,3 +36,50 @@
     height: 1em;
 }
 
+/* hamburger menu*/
+
+
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1em;
+    position: absolute;
+    background-color: rgb(255, 214, 214);
+    height: 100vh;
+    /* top: 0;  */
+    /* position: fixed;
+    color: rgb(0, 0, 0);
+    background-color: var(--header);
+    /* right: 0; */
+    /* flex-direction: column;
+    min-width: 220px;
+    transform: translate(100%);
+    transition: transform .5s, box-shadow .5s; */
+    
+}
+
+.hamburger-item {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    padding: .5em 0;
+    justify-content: start;
+    border-bottom: 1px solid black;
+    padding: 1.125em 1.6em;
+
+}
+
+.hamburger-btn.word {
+    flex-grow: 1;
+    margin-left: 1em;
+}
+
+.hamburger-item:hover {
+    cursor: pointer;
+    /* box-shadow: 0 4px 2px -0px gray;} */
+}
+
+.hamburger-btn {
+    height: 1em;
+}

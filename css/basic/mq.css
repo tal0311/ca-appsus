@@ -1,9 +1,20 @@
-/* @media (min-width: 500px) {
+@media (min-width: 500px) {
 
 }
 
 @media (min-width: 800px) {
+    .hamb-btn {
+        display: none;
+    }
+    
+    .mail-hamb {
+        display: none;
+    }
 
+    
+    .side-menu {
+        display: flex;
+    }
 }
 
- */
+
