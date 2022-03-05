@@ -63,8 +63,6 @@
     cursor: auto;
 }
 
-
-
 .mail-form button {
     background-color: rgb(221, 221, 221);
     margin: 1em;
@@ -77,10 +75,6 @@
     cursor: pointer;
     background-color: rgb(179, 179, 179);
 }
-
-
-
-
 
 .plus-sign {
     height: 1em;
