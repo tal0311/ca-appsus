@@ -19,7 +19,7 @@ export default {
            name="isPinned" value="true" v-model="newNote.isPinned"/>
              
               
-          <button @click="saveNote">add note</button>
+          <button @click="saveNote" class="add-note-btn">add note</button>
           <div className="type-container">
             <label htmlFor="img">
               img
@@ -70,7 +70,6 @@ export default {
           regRx,
           'embed'
         )
-        
       }
       console.log(this.newNote.type)
       this.$emit('new-note', this.newNote)
