@@ -9,8 +9,8 @@ body {
   font-family: 'Roboto', sans-serif;
   font-size: 0.9em;
 }
-img,
-iframe {
+.keep-index img,
+.keep-index iframe {
   height: 150px;
   width: 100%;
   object-fit: cover;
