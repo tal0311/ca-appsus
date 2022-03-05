@@ -1,16 +1,14 @@
-import { router } from './router.js';
+import { router } from './router.js'
 
 const options = {
-    template: `
-    <section>
+  template: `
+    <section class="main-body">
         <router-view />
     </section>
     `,
-    components: {
-    }
-};
+  components: {},
+}
 
-
-const app = Vue.createApp(options);
+const app = Vue.createApp(options)
 app.use(router)
-app.mount('#app');
+app.mount('#app')
