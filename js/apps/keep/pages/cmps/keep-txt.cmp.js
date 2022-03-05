@@ -35,9 +35,12 @@ export default {
             <div class="action-container">
                 <input @change="addColor" type="color" name="color"
                  v-model="color"/>
-                <button @click.stop="remove">&#10754;</button>
-                <button @click.stop="duplicate">&#x29C9;</button>
-                <button @onchange="saveEdits" @click="toggleEdit">{{isEditable? 'save': '+'}}</button>
+                <button class="fa-solid fa-x"
+                @click.stop="remove"></button>
+                <button class="fa-solid fa-clone"
+                @click.stop="duplicate"></button>
+                <button class="fa-solid fa-pen"
+                 @onchange="saveEdits" @click="toggleEdit">{{isEditable? 'save': '+'}}</button>
                 
                             
               </div>
