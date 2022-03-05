@@ -3,34 +3,32 @@ import { showErrorMsg, showSuccessMsg } from '../../../services/eventBus-service
 import mailList from '../cmp/mail-list.cmp.js';
 import mailCompose from '../cmp/mail-compose.cmp.js';
 import mailPreview from '../cmp/mail-preview.cmp.js';
+import mailMainMenu from '../cmp/mail-main-menu.cmp.js';
+import mailHamb from '../cmp/mail-hamb.cmp.js';
+import mailFilter from '../cmp/mail-filter.cmp.js';
 
 export default {
     name: 'mail-app',
     template: `
     <section class="mail-app app-main">
         <div class="mail-utils">
-            <div class="compose" @click="composing = true">COMPOSE+</div>
+            <div class="hamb-menu hamb-btn" @click="hambOpen = !hambOpen">☰</div>
+            <mail-filter @filtered="setFilterBy"/>
         </div>
         <div class="main-area">
-            <nav class="side-menu">
-                <div class="all-mail side-menu-item">
-                    <div><img src="js/apps/mail/icons/all-mail.png" class="icon side-menu-btn"></div>    
-                    <div @click="showFolderMails('all')" class="side-menu-btn word">All {{unreadCount}}</div>
-                </div>
-                <div class="inbox side-menu-item" >
-                    <div><img src="js/apps/mail/icons/inbox.png" class="icon side-menu-btn"></div>    
-                    <div @click="showFolderMails('inbox')" class="side-menu-btn word">Inbox</div>
-                </div>
-                <div class="sent side-menu-item">
-                    <div><img src="js/apps/mail/icons/sent.png" class="icon side-menu-btn"></div>    
-                    <div @click="showFolderMails('sent')" class="side-menu-btn word">Sent</div>
-                </div>
-                <div class="trash side-menu-item">
-                    <div><img src="js/apps/mail/icons/trash.png" class="icon side-menu-btn"></div>    
-                    <div @click="showFolderMails('trash')" class="side-menu-btn word">Trash</div>
-                </div>
-            </nav>
+            <mail-hamb
+                v-if="hambOpen"
+                @folderMails='showFolderMails' 
+                @composing="composing=true" 
+                :unread='unreadCount'>
+            </mail-hamb>
+            <mail-main-menu 
+                @folderMails='showFolderMails' 
+                @composing="composing=true" 
+                :unread='unreadCount'>
+            </mail-main-menu>
             <div class="mails-area">
+                <!-- mails list  -->
                 <mail-list
                     v-if:="!composing"
                     :mails="renderedMails"
@@ -39,10 +37,17 @@ export default {
                     @permDelete="permDelete"
                     >
                 </mail-list>
-                <mail-compose v-if:="composing" @addNewMail="addSentMail"/>
+                <!-- no mails msg -->
+                <div v-if="!areRenderedMails" class="no-mails-msg">
+                    There are no nore Emails in this box.
+                </div>
+                <!-- mail compose -->
+                <mail-compose 
+                    v-if:="composing" 
+                    @addNewMail="addSentMail"
+                    @closeCompose="composing = flase"
+                />
             </div>
-
-
         </div>
     </section>
     `,
@@ -50,20 +55,22 @@ export default {
         return {
             mails: null,
             renderedMails: this.mails,
-            selectedBook: null,
-            filterBy: null,
+            filterValue: null,
             unreadCount: null,
             composing: false,
+            hambOpen: false,
         };
     },
     methods: {
         countUnread() {
+            this.unreadCount = 0;
             this.mails.map(mail => {
                 if (!mail.isRead) this.unreadCount++;
             });
         },
         showFolderMails(folder) {
-            this.composing = false
+            this.hambOpen = false;
+            this.composing = false;
             if (folder === 'inbox' || folder === 'sent') {
                 this.renderedMails = this.mails.filter(mail =>
                     !mail.trashed && mail.direc === `${folder}`);
@@ -92,23 +99,40 @@ export default {
                 .then(() => {
                     const idx = this.mails.findIndex((mail) => mail.id === mailId);
                     this.mails.splice(idx, 1);
-                    this.showFolderMails('all');
+                    this.showFolderMails('inbox');
                 })
                 .then(this.countUnread());
         },
         addSentMail(mailToAdd) {
             mailService.save(mailToAdd)
                 .then(mail => this.mails.push(mailToAdd))
-                .then(this.showFolderMails('all'))
+                .then(this.showFolderMails('inbox'));
             // .then(eventbus)
         },
-
+        setFilterBy(filterBy) {
+            this.filterValue = filterBy;
+            this.filterMails();
+        },
+        filterMails() {
+            if (!this.filterValue) return this.showFolderMails('inbox');
+            this.mergeMail()
+            console.log(this.filterValue);
+            const regex = new RegExp(this.filterValue, 'i');
+            this.renderedMails = this.mails.filter((mail) => regex.test(mail.merged));
+        },
+        mergeMail() {
+            this.mails.map(mail => {
+                console.log(mail.subject);
+                const word = '' + mail.peer + mail.subject + mail.body;
+                mail.merged = word
+            });
+            
+        }
     },
     computed: {
-        mailToShow() {
-            if (!this.filterBy) return this.mails;
-            // const regex = new RegExp(this.filterBy.title, 'i');
-            // return this.mails.filter(mail => regex.test(mail.title));
+        areRenderedMails() {
+            if (!this.renderedMails) return;
+            if (this.renderedMails.length) return true;
         },
     },
     created() {
@@ -117,13 +141,16 @@ export default {
                 this.mails = mails;
                 this.renderedMails = mails;
             })
-            .then(mails => this.countUnread());
-
+            .then(mails => this.countUnread())
+            .then(mails => this.showFolderMails('inbox'));
     },
     components: {
         mailList,
         mailCompose,
         mailPreview,
+        mailMainMenu,
+        mailHamb,
+        mailFilter,
     }
 
 };

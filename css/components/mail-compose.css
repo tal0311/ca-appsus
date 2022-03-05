@@ -1,14 +1,82 @@
 
-.mail-compose {
-    width: 250px;
+.mail-compose{
+    width: 100%;
+    padding: 0 2em;
+    /* font-size: .5em; */
+}
+
+.compose {
+    background-color: rgb(245, 245, 245);
+    color: black;
+    display: inline-block;
+    padding: .75em;
+    border-radius: 25px;
+}
+
+.compose:hover {
+    cursor: pointer;
+    /* font-weight: 700; */
+    /* border: 1px solid black; */
+    background-color: rgb(231, 231, 231);
+    
+}
+
+.compose span {
+    font-size: 1.25em;
+}
+
+.mail-form {
+    width: 100%;
+    /* -webkit-appearance: none; */
+    background-color: rgb(245, 245, 245);
+
 }
 
 .mini-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: rgb(221, 221, 221);
-    padding: .25em 1em;
+    padding: .5em 1em;
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px; 
+}
+
+.mini-title img {
+    height: .75em;
+    width: auto;
 }
 
 .form-field {
-    width: 250px;
-    padding: .25em 1em;
+    background-color: rgb(245, 245, 245);
+    width: 100%;
+    padding: .5em 1em;
+    border: none;
+    border-top: 1px solid rgb(221, 221, 221);
 }
+
+.form-field:focus {
+    outline: none;
+}
+
+.form-field:hover {
+    cursor: auto;
+}
+
+.mail-form button {
+    background-color: rgb(221, 221, 221);
+    margin: 1em;
+    padding: .5em;
+    border: none;
+    border-radius: 5px;
+}
+
+.mail-form button:hover {
+    cursor: pointer;
+    background-color: rgb(179, 179, 179);
+}
+
+.plus-sign {
+    height: 1em;
+}
+

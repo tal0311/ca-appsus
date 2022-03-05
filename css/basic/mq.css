@@ -1,9 +1,28 @@
-/* @media (min-width: 500px) {
+@media (min-width: 500px) {
 
 }
 
 @media (min-width: 800px) {
+    .hamb-btn {
+        display: none;
+    }
 
+    .mail-hamb {
+        display: none;
+    }
+
+    .side-menu {
+        display: flex;
+    }
+
+    .mail-details {
+        /* background-color: rgb(149, 243, 255); */
+        padding: 0 3em;
+    }
+
+    .mail-filter {
+        max-width: 70%;
+    }
 }
 
- */
+

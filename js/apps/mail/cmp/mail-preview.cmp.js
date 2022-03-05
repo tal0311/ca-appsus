@@ -9,20 +9,27 @@ export default {
             
             <div class="peer-subject" >
                 <router-link :to="/mail/+mail.id" @click="markRead" :class="readClass">
-                    <div>{{mail.direc}}</div>
-                    <div>{{mail.id}}</div>
-                    <div>{{mail.peer}}</div>
-                    <div>subject: {{mail.subject}}</div>    
-                    <div>trashed: {{mail.trashed}}</div>    
+                    <div class="preview-peer">{{mail.peer}}</div>
+                    <div class="preview-subject">subject: {{mail.subject}}</div>    
+                    <div class="preview-body">{{shortMailBody}}</div>
                 </router-link>
             </div>
-            <div class="date-delete-btn">
+            <div class="date-delete">
                 <div>{{formattedTime}}</div>    
-                <button v-if="!mail.trashed" @click="MoveToTrash">Trash</button>
-                <button v-if="mail.trashed" @click="permDelete">Delete</button>
+                <img 
+                    src="js/apps/mail/icons/trash.png"
+                    v-if="!mail.trashed"
+                    @click="MoveToTrash"
+                    
+                >
+                <img 
+                    src="js/apps/mail/icons/delete empty.png"
+                    v-if="mail.trashed"
+                    @click="permDelete"
+                    
+                >
             </div>
         </div>
-        <hr class="preview-hr">
     </section>
     `,
     data() {
@@ -38,7 +45,7 @@ export default {
             this.$emit('trash', this.mail);
         },
         permDelete() {
-            const deleteMail = confirm('This item is already trashed. Do you want to perminantly delete it?');
+            const deleteMail = confirm('Perminantly delete this mail?');
             if (deleteMail) this.$emit('permDelete', this.mail)
         }
     },
@@ -46,6 +53,9 @@ export default {
         readClass() {
             return !this.mail.isRead ? 'notRead' : "";
         },
+        shortMailBody() {
+            return this.mail.body.slice(0, 50) + '...'
+        }
     },
     created() {
 

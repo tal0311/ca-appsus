@@ -4,10 +4,16 @@ export default {
     name: "mail-details",
     template: `
         <section v-if="mail" class="mail-details">
-            <router-link to="/mail"><button>go back</button></router-link>
-            <button>delete</button>
-            <button>mark unread</button>
+            <menu class="mail-details-menu">
+                <router-link to="/mail">
+                    <img src="js/apps/mail/icons/close.png">
+                </router-link>
+                <img src="js/apps/mail/icons/trash.png">
+                <img src="js/apps/mail/icons/all-mail.png">
+            </menu>
             <div class="title">{{mail.subject}}</div>
+            <br>
+            <div class="sender">{{mail.peer}}</div>
             <br>
             <div class="body">{{mail.body}}</div>
 
