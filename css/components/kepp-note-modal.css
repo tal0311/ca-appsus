@@ -1,4 +1,26 @@
+.prev-section {
+  border-radius: 2em;
+}
+
+.prev-container {
+  position: relative;
+  box-shadow: 5px 5px 64px 41px #000;
+  border-radius: 2em;
+}
+.prev-container button.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 2rem;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
 .note-modal {
+  box-shadow: 5px 5px 64px 41px #000;
+  padding: 2em;
   position: fixed;
   top: 50vh;
   right: 50vh;
@@ -6,4 +28,7 @@
   transform: translateY(-50%);
   height: 50vh;
   width: 50vw;
+}
+
+@media (max-width: 600px) {
 }

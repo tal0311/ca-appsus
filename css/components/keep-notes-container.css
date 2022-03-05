@@ -1,4 +1,4 @@
-.notes-container.flex {
+.notes-container {
   padding-top: 3rem;
   background-color: var(--secondClr);
   flex-wrap: wrap;
@@ -40,7 +40,10 @@ input[type='color']:hover {
   .notes-container {
     width: 100%;
   }
-  .notes-container.flex .note {
+  .notes-container .note {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    width: 100%;
     display: flex;
     flex-direction: column;
     height: fit-content;

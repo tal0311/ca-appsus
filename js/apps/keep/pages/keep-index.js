@@ -30,9 +30,10 @@ export default {
         @change-color="addColorToNote"
         @pin="pinNote"
         @selected="setNotePreview"
+        
         ></component>
    </section>
-      
+      <hr />
       
         <keep-filter-results-cmp 
           v-if="filterValue"
@@ -46,16 +47,19 @@ export default {
         @remove-note="removeNote" @duplicate-note="duplicateNote"
         @change-color="addColorToNote"
         @pin="pinNote"
+        @selected="setNotePreview"
         ></component>
         
-    </section>
+    </section >
 
       <keep-preview-cmp 
+      class="prev-section"
+      v-if="noteToPreview"
       @remove="removeNote"
       @color="addColorToNote"
       @duplicate="duplicateNote"
       @close-modal="closePreview"
-      v-if="noteToPreview"
+      @save-update="updateNote"
       :note="noteToPreview"
       />
         
@@ -89,30 +93,51 @@ export default {
   },
 
   methods: {
+    findNoteIdx(note) {
+      if (note.isPinned) {
+        let idx = this.pinned.findIndex((note) => note.id)
+        return { idx, isPinned: true }
+      } else {
+        let idx = this.nots.findIndex((note) => note.id)
+        return { idx, isPinned: false }
+      }
+    },
+    updateNote(edits, id) {
+      console.log('update Note Index')
+      console.log(edits, id)
+      keepService.get(id).then((note) => {
+        console.log('note from service:', note)
+        edits.title ? (note.info.title = edits.title) : ''
+        edits.content ? (note.info.content = edits.content) : ''
+
+        if (note.isPinned) {
+          this.removeNote(note.id)
+          this.pinned = [...this.pinned, note]
+        } else {
+          this.removeNote(note.id)
+          this.notes = [...this.notes, note]
+        }
+
+        keepService.save(note)
+      })
+    },
     closePreview() {
       this.noteToPreview = null
     },
     setNotePreview(note) {
-      console.log('selected', note)
       this.noteToPreview = note
-      console.log('this.noteToPreview:', this.noteToPreview)
+      console.log(this.noteToPreview)
     },
     pinNote(id, isPinned) {
-      console.log(id, isPinned)
-
       keepService.get(id).then((note) => {
         note.isPinned = !note.isPinned
-        console.log(note.isPinned)
         if (note.isPinned) {
           let idx = this.notes.findIndex((note) => note.id === id)
           let toPin = this.notes.splice(idx, 1)[0]
           toPin.isPinned = !toPin.isPinned
           this.pinned.push(toPin)
-          console.log(this.pinned)
         } else {
-          console.log('to unpin')
           let idx = this.pinned.findIndex((note) => note.id === id)
-          console.log(idx)
           let unpin = this.pinned.splice(idx, 1)[0]
           unpin.isPinned = !unpin.isPinned
           this.notes = [...this.notes, unpin]
@@ -121,33 +146,24 @@ export default {
       })
     },
     addColorToNote(color, id) {
-      console.log(color, id)
       keepService.get(id).then((note) => {
-        console.log(note)
         note.style = { ...note.style, backgroundColor: color }
         keepService.save(note)
       })
     },
     addNote(note) {
-      console.log(note)
       if (note.type === 'keepTodoCmp') {
         let newNote = keepService.getEmptyTodo()
-        console.log('newNote:', newNote)
-
         newNote.type = note.type
         newNote.info.label = note.TitleInput
         newNote.info.todos = note.contentInput.split(',').map((task) => {
           return { txt: task }
         })
-
-        console.log(newNote)
         newNote.isPinned = note.isPinned
         keepService.save(newNote).then((note) => {
           note.isPinned
             ? (this.pinned = [...this.pinned, note])
             : (this.notes = [...this.notes, note])
-          console.log('notes:', this.notes)
-          console.log('pinned:', this.pinned)
         })
         return
       }
@@ -157,21 +173,15 @@ export default {
       newNote.info.content = note.contentInput
       newNote.isPinned = note.isPinned
 
-      console.log('newNote:', newNote)
       keepService.save(newNote).then((note) => {
         note.isPinned
           ? (this.pinned = [...this.pinned, note])
           : (this.notes = [...this.notes, note])
-        console.log('notes:', this.notes)
-        console.log('pinned:', this.pinned)
       })
     },
     removeNote(id) {
-      console.log('id:', id)
       keepService.get(id).then((note) => {
-        console.log('new note:', note)
         if (note.isPinned) {
-          console.log('pinned remove')
           let idx = this.pinned.findIndex((note) => note.id === id)
           this.pinned.splice(idx, 1)
         } else {

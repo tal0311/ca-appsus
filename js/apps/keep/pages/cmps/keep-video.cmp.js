@@ -1,10 +1,13 @@
 export default {
   name: 'videoNote',
   props: ['note'],
-  emit: ['remove-note', 'duplicate-note', 'change-color', 'pin'],
+  emit: ['remove-note', 'duplicate-note', 'change-color', 'pin', 'selected'],
   template: `
 
-  <section :style="{backgroundColor:color}" v-bind="$attrs">
+  <section :style="{backgroundColor:color}"
+     v-bind="$attrs"
+     @click="select">
+
     <label htmlFor="pin">
       &#9733;
       <input type="checkbox" @click="togglePin" v-model="pinned" :checked="note.isPinned" id="pin"/>
@@ -34,6 +37,10 @@ export default {
     }
   },
   methods: {
+    select() {
+      console.log('ok')
+      this.$emit('selected', this.note)
+    },
     togglePin() {
       console.log(this.note.id, this.note.isPinned)
       this.$emit('pin', this.note.id, this.pinned)

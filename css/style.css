@@ -21,6 +21,8 @@
 @import 'components/mail-compose.css';
 
 /* keep components */
+@import './components/keep-note.css';
+@import './components/keep-filter.css';
 @import './components/keep-input.css';
 @import 'components/keep-pinned-notes.css';
 @import 'components/keep-notes-container.css';

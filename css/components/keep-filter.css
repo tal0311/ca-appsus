@@ -1,0 +1,28 @@
+.filter {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter input {
+  padding-inline-start: 2%;
+  width: 40%;
+  height: 70%;
+  border-radius: 2em;
+  margin-inline-end: 1%;
+}
+.filter button {
+  border: none;
+  background-color: var(--primaryClr);
+  cursor: pointer;
+  height: 70%;
+  border-radius: 2em;
+  margin-inline-end: 1%;
+}
+
+.filter input:focus::placeholder {
+  transition: 0.3s ease;
+  transform: translateY(-150%);
+  opacity: 0;
+}

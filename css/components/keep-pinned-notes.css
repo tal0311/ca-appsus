@@ -13,14 +13,7 @@
 textarea {
   cursor: pointer;
 }
-.pinned-notes-container.flex .note {
-  border-radius: 1em;
-  padding: 2%;
-  max-width: 250px;
-  max-height: 300px;
 
-  border: 1px solid rgba(0, 0, 0, 0.28);
-}
 .action-container {
   position: absolute;
   bottom: 0;
