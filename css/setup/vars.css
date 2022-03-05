@@ -2,4 +2,9 @@
   --primaryClr: rgb(226, 226, 226);
   --secondaryClr: rgb(255, 238, 3);
   --deskTopWith: 80vw;
+  --mailPrime: rgb(22, 22, 22);
+  --mailSecond: rgb(61, 61, 61);
+  --mailText: rgb(212, 212, 212);
+  --mailGentle: rgb(77, 77, 77);
+
 }

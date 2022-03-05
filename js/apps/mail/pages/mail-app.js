@@ -5,6 +5,7 @@ import mailCompose from '../cmp/mail-compose.cmp.js';
 import mailPreview from '../cmp/mail-preview.cmp.js';
 import mailMainMenu from '../cmp/mail-main-menu.cmp.js';
 import mailHamb from '../cmp/mail-hamb.cmp.js';
+import mailFilter from '../cmp/mail-filter.cmp.js';
 
 export default {
     name: 'mail-app',
@@ -12,6 +13,7 @@ export default {
     <section class="mail-app app-main">
         <div class="mail-utils">
             <div class="hamb-menu hamb-btn" @click="hambOpen = !hambOpen">☰</div>
+            <mail-filter @filtered="setFilterBy"/>
         </div>
         <div class="main-area">
             <mail-hamb
@@ -53,7 +55,7 @@ export default {
         return {
             mails: null,
             renderedMails: this.mails,
-            filterBy: null,
+            filterValue: null,
             unreadCount: null,
             composing: false,
             hambOpen: false,
@@ -61,14 +63,14 @@ export default {
     },
     methods: {
         countUnread() {
-            this.unreadCount = 0
+            this.unreadCount = 0;
             this.mails.map(mail => {
                 if (!mail.isRead) this.unreadCount++;
             });
         },
         showFolderMails(folder) {
-            this.hambOpen = false
-            this.composing = false
+            this.hambOpen = false;
+            this.composing = false;
             if (folder === 'inbox' || folder === 'sent') {
                 this.renderedMails = this.mails.filter(mail =>
                     !mail.trashed && mail.direc === `${folder}`);
@@ -104,20 +106,34 @@ export default {
         addSentMail(mailToAdd) {
             mailService.save(mailToAdd)
                 .then(mail => this.mails.push(mailToAdd))
-                .then(this.showFolderMails('inbox'))
+                .then(this.showFolderMails('inbox'));
             // .then(eventbus)
         },
+        setFilterBy(filterBy) {
+            this.filterValue = filterBy;
+            this.filterMails();
+        },
+        filterMails() {
+            if (!this.filterValue) return this.showFolderMails('inbox');
+            this.mergeMail()
+            console.log(this.filterValue);
+            const regex = new RegExp(this.filterValue, 'i');
+            this.renderedMails = this.mails.filter((mail) => regex.test(mail.merged));
+        },
+        mergeMail() {
+            this.mails.map(mail => {
+                console.log(mail.subject);
+                const word = '' + mail.peer + mail.subject + mail.body;
+                mail.merged = word
+            });
+            
+        }
     },
     computed: {
-        mailToShow() {
-            if (!this.filterBy) return this.mails;
-            // const regex = new RegExp(this.filterBy.title, 'i');
-            // return this.mails.filter(mail => regex.test(mail.title));
-        },   
         areRenderedMails() {
-            if (!this.renderedMails) return
-            if (this.renderedMails.length) return true
-        }
+            if (!this.renderedMails) return;
+            if (this.renderedMails.length) return true;
+        },
     },
     created() {
         mailService.query()
@@ -126,9 +142,7 @@ export default {
                 this.renderedMails = mails;
             })
             .then(mails => this.countUnread())
-            .then(mails => this.showFolderMails('inbox'))
-            
-
+            .then(mails => this.showFolderMails('inbox'));
     },
     components: {
         mailList,
@@ -136,6 +150,7 @@ export default {
         mailPreview,
         mailMainMenu,
         mailHamb,
+        mailFilter,
     }
 
 };

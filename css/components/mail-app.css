@@ -10,7 +10,7 @@
 .side-menu {
     display: none;
     flex-direction: column;
-    padding: 0 1em;
+    padding: 1em 1em;
     /* margin: 0 1em; */
 }
 
@@ -45,7 +45,7 @@
     flex-direction: column;
     padding: 0 1em;
     position: absolute;
-    background-color: rgb(255, 214, 214);
+    background-color: rgb(247, 247, 247);
     height: 100vh;
     padding-top: 1em;
 }
