@@ -1,3 +1,7 @@
+.mail-app {
+ max-width: 980px;
+}
+
 .main-area {
     display: flex;
 }
@@ -8,8 +12,6 @@
     padding: 0 1em;
     /* margin: 0 1em; */
 }
-
-
 
 .side-menu-item {
     display: flex;

@@ -36,9 +36,7 @@ export default {
                 </div>
             </nav>
             <div class="mails-area">
-                <div v-if="!areRenderedMails" class="no-mails-msg">
-                    There are no nore Emails in this box.
-                </div>
+                <!-- mails list  -->
                 <mail-list
                     v-if:="!composing"
                     :mails="renderedMails"
@@ -47,6 +45,11 @@ export default {
                     @permDelete="permDelete"
                     >
                 </mail-list>
+                <!-- no mails msg -->
+                <div v-if="!areRenderedMails" class="no-mails-msg">
+                    There are no nore Emails in this box.
+                </div>
+                <!-- mail compose -->
                 <mail-compose v-if:="composing" @addNewMail="addSentMail"/>
             </div>
 

@@ -1,7 +1,8 @@
 
 .mail-compose{
-    width: 250px;
-    font-size: .5em;
+    width: 100%;
+    padding: 0 2em;
+    /* font-size: .5em; */
 }
 
 .compose {
@@ -24,15 +25,39 @@
     font-size: 1.25em;
 }
 
+.mail-form {
+    width: 100%;
+    /* -webkit-appearance: none; */
+    background-color: rgb(245, 245, 245);
+
+}
+
 .mini-title{
     background-color: rgb(221, 221, 221);
-    padding: .25em 1em;
-    font-size: 1.5em;
+    padding: .5em 1em;
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    
 }
 
 .form-field {
-    width: 250px;
-    padding: .25em 1em;
+    background-color: rgb(245, 245, 245);
+    width: 100%;
+    padding: .5em 1em;
+    border: none;
+    border-top: 1px solid rgb(221, 221, 221);
+}
+
+.form-field:focus {
+    outline: none;
+}
+
+.mail-form button {
+    background-color: rgb(221, 221, 221);
+    margin: 1em;
+    padding: .5em;
+    border: none;
+    border-radius: 5px;
 }
 
 .plus-sign {
