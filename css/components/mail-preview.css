@@ -2,10 +2,12 @@
     display: flex;
     justify-content: space-between;
     padding: .5em 0;
+    border-bottom: 1px solid rgb(241, 241, 241);
 }
 
-.main-preview:hover{
-    background-color: rgb(241, 241, 241);
+.main-preview:hover {
+    /* background-color: rgb(245, 135, 135); */
+    /* box-shadow: inset 0px 0px 15px -1px rgba(0,0,0,0.31); */
 }
 
 .date-delete {
@@ -18,14 +20,16 @@
 .date-delete:hover {
     cursor: pointer;
 }
+
 .date-delete img {
     height: auto;
-    width: 2em;
+    width: 1.5em;
+    margin: .5em;
 }
 
-.preview-hr {
-    border-top: 1px solid rgb(228, 228, 228);
-    margin: 0;
+.preview-peer {
+    font-size: 1.15em;
+    margin-bottom: .25em;
 }
 
 .notRead {

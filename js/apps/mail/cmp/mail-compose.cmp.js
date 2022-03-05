@@ -5,7 +5,10 @@ export default {
     name: 'mail-compose',
     template: `
     <section class="mail-compose">
-        <div class="mini-title">New Message</div>
+        <div class="mini-title">
+            New Message
+            <img @click="closeCompose" src="js/apps/mail/icons/close.png">
+        </div>
         <form @submit.prevent="send" class="mail-form">
             <div><input class="form-field" type="text" required v-model="mailToAdd.peer" placeholder="To" ref="address"></div>
             <div><input class="form-field" type="text"  v-model="mailToAdd.subject" placeholder="Subject"></div>
@@ -33,6 +36,10 @@ export default {
         send() {
             this.$emit('addNewMail', this.mailToAdd);
         },
+        closeCompose() {
+            console.log('yay');
+            this.$emit('closeCompose')
+        }
     },
     computed: {
 

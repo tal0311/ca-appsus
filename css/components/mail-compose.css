@@ -33,11 +33,18 @@
 }
 
 .mini-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: rgb(221, 221, 221);
     padding: .5em 1em;
     border-top-right-radius: 12px;
-    border-top-left-radius: 12px;
-    
+    border-top-left-radius: 12px; 
+}
+
+.mini-title img {
+    height: .75em;
+    width: auto;
 }
 
 .form-field {
@@ -52,6 +59,12 @@
     outline: none;
 }
 
+.form-field:hover {
+    cursor: auto;
+}
+
+
+
 .mail-form button {
     background-color: rgb(221, 221, 221);
     margin: 1em;
@@ -59,6 +72,15 @@
     border: none;
     border-radius: 5px;
 }
+
+.mail-form button:hover {
+    cursor: pointer;
+    background-color: rgb(179, 179, 179);
+}
+
+
+
+
 
 .plus-sign {
     height: 1em;

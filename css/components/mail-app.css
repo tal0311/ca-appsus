@@ -1,5 +1,6 @@
 .mail-app {
  max-width: 980px;
+ margin: auto;
 }
 
 .main-area {
@@ -15,6 +16,7 @@
 
 .side-menu-item {
     display: flex;
+    align-items: center;
     /* justify-content: space-between; */
     padding: .5em 0;
     

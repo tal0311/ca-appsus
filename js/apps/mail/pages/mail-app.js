@@ -3,13 +3,14 @@ import { showErrorMsg, showSuccessMsg } from '../../../services/eventBus-service
 import mailList from '../cmp/mail-list.cmp.js';
 import mailCompose from '../cmp/mail-compose.cmp.js';
 import mailPreview from '../cmp/mail-preview.cmp.js';
+import mailMainMenu from '../cmp/mail-main-menu.cmp.js';
 
 export default {
     name: 'mail-app',
     template: `
     <section class="mail-app app-main">
         <div class="mail-utils">
-            <div class="compose" @click="composing = true">
+            <div  v-if="" @click="composing = true" class="compose" style=>
                 <img src="js/apps/mail/icons/plus.png" class="plus-sign">
                 <span>
                     COMPOSE
@@ -17,24 +18,7 @@ export default {
             </div>
         </div>
         <div class="main-area">
-            <nav class="side-menu">
-                <div class="inbox side-menu-item" >
-                    <div><img src="js/apps/mail/icons/inbox.png" class="icon side-menu-btn"></div>    
-                    <div @click="showFolderMails('inbox')" class="side-menu-btn word">Inbox ({{unreadCount}})</div>
-                </div>
-                <div class="all-mail side-menu-item">
-                    <div><img src="js/apps/mail/icons/all-mail.png" class="icon side-menu-btn"></div>    
-                    <div @click="showFolderMails('all')" class="side-menu-btn word">All</div>
-                </div>
-                <div class="sent side-menu-item">
-                    <div><img src="js/apps/mail/icons/sent.png" class="icon side-menu-btn"></div>    
-                    <div @click="showFolderMails('sent')" class="side-menu-btn word">Sent</div>
-                </div>
-                <div class="trash side-menu-item">
-                    <div><img src="js/apps/mail/icons/trash.png" class="icon side-menu-btn"></div>    
-                    <div @click="showFolderMails('trash')" class="side-menu-btn word">Trash</div>
-                </div>
-            </nav>
+            <mail-main-menu @folderMails='showFolderMails' :unread='unreadCount' />
             <div class="mails-area">
                 <!-- mails list  -->
                 <mail-list
@@ -50,10 +34,12 @@ export default {
                     There are no nore Emails in this box.
                 </div>
                 <!-- mail compose -->
-                <mail-compose v-if:="composing" @addNewMail="addSentMail"/>
+                <mail-compose 
+                    v-if:="composing" 
+                    @addNewMail="addSentMail"
+                    @closeCompose="composing = flase"
+                />
             </div>
-
-
         </div>
     </section>
     `,
@@ -113,7 +99,6 @@ export default {
                 .then(this.showFolderMails('inbox'))
             // .then(eventbus)
         },
-
     },
     computed: {
         mailToShow() {
@@ -141,6 +126,7 @@ export default {
         mailList,
         mailCompose,
         mailPreview,
+        mailMainMenu
     }
 
 };

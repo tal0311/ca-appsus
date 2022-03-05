@@ -9,11 +9,9 @@ export default {
             
             <div class="peer-subject" >
                 <router-link :to="/mail/+mail.id" @click="markRead" :class="readClass">
-                    <div>{{mail.direc}}</div>
-                    <div>{{mail.id}}</div>
-                    <div>{{mail.peer}}</div>
-                    <div>subject: {{mail.subject}}</div>    
-                    <div>trashed: {{mail.trashed}}</div>    
+                    <div class="preview-peer">{{mail.peer}}</div>
+                    <div class="preview-subject">subject: {{mail.subject}}</div>    
+                    <div class="preview-body">{{shortMailBody}}</div>
                 </router-link>
             </div>
             <div class="date-delete">
@@ -32,7 +30,6 @@ export default {
                 >
             </div>
         </div>
-        <hr class="preview-hr">
     </section>
     `,
     data() {
@@ -56,6 +53,9 @@ export default {
         readClass() {
             return !this.mail.isRead ? 'notRead' : "";
         },
+        shortMailBody() {
+            return this.mail.body.slice(0, 50) + '...'
+        }
     },
     created() {
 
