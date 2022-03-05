@@ -11,11 +11,11 @@ export default {
     template: `
     <section class="mail-app app-main">
         <div class="mail-utils">
-            <button class="hamb-menu hamb-btn" @click="openHamb = !openHamb">☰</button>
+            <div class="hamb-menu hamb-btn" @click="hambOpen = !hambOpen">☰</div>
         </div>
         <div class="main-area">
             <mail-hamb
-                v-if="openHamb"
+                v-if="hambOpen"
                 @folderMails='showFolderMails' 
                 @composing="composing=true" 
                 :unread='unreadCount'>
@@ -56,7 +56,7 @@ export default {
             filterBy: null,
             unreadCount: null,
             composing: false,
-            openHamb: false,
+            hambOpen: false,
         };
     },
     methods: {
@@ -67,6 +67,7 @@ export default {
             });
         },
         showFolderMails(folder) {
+            this.hambOpen = false
             this.composing = false
             if (folder === 'inbox' || folder === 'sent') {
                 this.renderedMails = this.mails.filter(mail =>
