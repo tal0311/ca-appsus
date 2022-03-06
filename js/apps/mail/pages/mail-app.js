@@ -122,7 +122,6 @@ export default {
         },
         mergeMail() {
             this.mails.map(mail => {
-                console.log(mail.subject);
                 const word = '' + mail.peer + mail.subject + mail.body;
                 mail.merged = word
             });

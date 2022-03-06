@@ -8,8 +8,8 @@ export default {
                 <router-link to="/mail">
                     <img src="js/apps/mail/icons/close.png">
                 </router-link>
-                <img src="js/apps/mail/icons/trash.png">
-                <img src="js/apps/mail/icons/all-mail.png">
+                <!-- <img src="js/apps/mail/icons/trash.png">
+                <img src="js/apps/mail/icons/all-mail.png"> -->
             </menu>
             <div class="title">{{mail.subject}}</div>
             <br>
