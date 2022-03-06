@@ -1,15 +1,31 @@
-header { 
-    background-color: rgb(255, 161, 161);
-    display: flex;
-    justify-content: space-between;
-    padding: 1em 2em;
+header {
+  margin-bottom: 2rem;
+  background-color: #333;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 2em;
+  display: flex;
+  align-items: center;
+  color: #fff;
 }
-
+header a {
+  color: #ffff;
+  font-size: 1.2rem;
+}
 footer {
-    background-color: rgb(198, 255, 13);
-    padding: 1em;
+  background-color: rgb(198, 255, 13);
+  padding: 1em;
 }
 
 .main-router-view {
-    height: 80vh;
+  height: 80vh;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.router-link-exact-active {
+  color: brown;
 }

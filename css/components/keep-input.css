@@ -5,6 +5,28 @@
   text-align: center;
   width: 50%;
 }
+.add-note input[name='title'] {
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  border-bottom: none;
+  padding: 0.2rem;
+  padding-inline-start: 2rem;
+  border: 0.5 solid #333;
+}
+.add-note input[name='title']:focus,
+.add-note-container textarea {
+  outline-color: rgb(47, 193, 25);
+}
+.add-note input[name='title']::placeholder {
+  font-family: inherit;
+  font-size: larger;
+}
+.add-note .add-note-btn {
+  border-top: none;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  padding: 0.2rem;
+}
 
 .add-note-container.flex {
   flex-direction: column;
@@ -29,6 +51,7 @@
 
 .add-note-container textarea {
   resize: none;
+  text-align: center;
 }
 
 @media (max-width: 600px) {

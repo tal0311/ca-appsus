@@ -13,7 +13,7 @@ export default {
   emits: ['remove', 'duplicate', 'change-color', 'pin'],
   template: `
     <section class="keep-index app-main">
-        <h1>keep app</h1>
+        
         <keep-filter-cmp @filtered="setFilterBy"/>
         <section class="add-note ">
           <!-- add new note -->

@@ -22,8 +22,10 @@ export default {
                  v-model="color"/>
                  <i class="fa-solid fa-circle-trash"></i>
                 
-                <button @click="remove" >&#10754;</button>
-                <button @click="duplicate">&#x29C9;</button>
+                <button class="fa-solid fa-x"
+                 @click="remove"></button>
+                <button class="fa-solid fa-clone"
+                @click="duplicate"></button>
               </div>
                  
         </section>

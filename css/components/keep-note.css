@@ -8,6 +8,7 @@
   width: auto;
   flex-basis: 25%;
   cursor: pointer;
+  margin: 2%;
 }
 
 @media (max-width: 600px) {

@@ -21,8 +21,10 @@ export default {
            <div class="action-container">
                 <input @change="addColor" type="color" name="color"
                  v-model="color"/>
-                <button @click="remove">&#10754;</button>
-                <button @click="duplicate">&#x29C9;</button>
+                <button class="fa-solid fa-x"
+                 @click="remove"></button>
+                <button class="fa-solid fa-clone"
+                @click="duplicate"></button>
             </div>  
            
           </section>

@@ -20,6 +20,12 @@ body a {
   text-decoration: none;
   color: black;
 }
+.main-body {
+  background-color: rgb(198, 198, 198);
+  height: 300vh;
+  /* background-image: url('./../../img/bg-sus-app.jpg'); */
+}
+
 /* h1 {
     color: blue;
 } */

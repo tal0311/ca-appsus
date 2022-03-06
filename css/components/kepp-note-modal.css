@@ -31,4 +31,10 @@
 }
 
 @media (max-width: 600px) {
+  .note-modal {
+    transform: translateX(100%);
+    width: 80%;
+    top: 40vh;
+    margin: auto;
+  }
 }
